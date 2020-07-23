@@ -1,0 +1,19 @@
+.main_container {
+  background-color: #DAE0E6;
+  font-size: 15px;
+  font-family: -apple-system, system-ui;
+}
+
+main {
+ flex: 1;
+ padding-top: 5vw;
+}
+
+main > div {
+   border-radius: 20px;
+}
+
+header {
+  width: 275px;
+  box-sizing: border-box;
+}

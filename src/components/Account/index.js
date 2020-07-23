@@ -9,6 +9,7 @@ import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
+import PieChart from '../PieChart';
 
 const SIGN_IN_METHODS = [
     {
@@ -33,6 +34,7 @@ const AccountPage = () => (
     <AuthUserContext.Consumer>
         {authUser => (
             <div>
+                <PieChart />
                 <h1>Account: {authUser.email}</h1>
                 <PasswordForgetForm />
                 <PasswordChangeForm />

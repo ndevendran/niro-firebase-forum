@@ -1,0 +1,15 @@
+.btn_standard {
+    padding: .3em .8em;
+    border: 1px solid #446d88;
+    background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);
+    border-radius: .2em;
+    box-shadow: 0 .05em .25em gray;
+    color: white;
+    text-shadow: 0 -.05em .05em #335166;
+    font-size: 95%;
+    line-height: 1.5;
+}
+
+ul {
+    list-style: none;
+}

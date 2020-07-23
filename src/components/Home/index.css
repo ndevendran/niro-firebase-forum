@@ -1,0 +1,70 @@
+h1 {
+  background: hsl(0,50%,45%);
+  color: white;
+  text-shadow:
+    1px 1px black, 2px 2px black,
+    3px 3px black, 4px 4px black,
+    5px 5px black, 6px 6px black,
+    7px 7px black, 8px 8px black;
+  height: 1.5em;
+  padding-left: 3em;
+  border: 1px solid rgba(221,221,221,0.15);
+}
+
+.messageContent {
+  display: flex;
+  height: 10em;
+  width: 50em;
+  border: 1px solid rgba(221,221,221,0.15);
+  background-color: white;
+  box-shadow: 0 0.03rem 0.1rem 0 rgba(0,0,0,0.2);
+  padding: 1em;
+  margin: auto 25%;
+  box-sizing: border-box;
+  color: black;
+}
+
+.messageBody {
+  height: 50%;
+  flex: 1;
+}
+
+.messageHeader {
+  padding-bottom: 1em;
+}
+
+.messageFooter {
+  display: flex;
+  min-width: 100%;
+}
+
+.messageFooter > header {
+  min-width: 1em;
+}
+
+.messageFooter > body {
+  flex: 1;
+}
+
+.messageContainer {
+  min-width: 100%;
+  padding-left: 5vw;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  min-height: 100%;
+}
+
+.messageList {
+  border: 1px solid rgba(221,221,221,0.15);
+  width: 50em;
+  padding-left: 0;
+}
+
+.messageList > li:nth-child(1) {
+  border-radius: 2.5px 2.5px 0 0;
+}
+
+.messageList > li:last-child {
+  border-radius: 0 0 2.5px 2.5px;
+}

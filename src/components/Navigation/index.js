@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthUserContext } from '../Session';
+import TrapezoidTabs from './TrapezoidTabs.js';
 
 import SignOutButton from '../SignOut';
 
@@ -18,20 +19,12 @@ const Navigation = () => (
 );
 
 const NavigationAuth = ({ authUser }) => (
-        <ul>
-            <li>
-                <Link to={ROUTES.LANDING}>Landing</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.HOME}>Home</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
-            </li>
+        <ul className="navigation">
+            <TrapezoidTabs link={ROUTES.LANDING}>Landing</TrapezoidTabs>
+            <TrapezoidTabs link={ROUTES.HOME}>Home</TrapezoidTabs>
+            <TrapezoidTabs link={ROUTES.ACCOUNT}>Account</TrapezoidTabs>
             {authUser.roles[ROLES.ADMIN] && (
-                <li>
-                    <Link to={ROUTES.ADMIN}>Admin</Link>
-                </li>
+                <TrapezoidTabs link={ROUTES.ADMIN}>Admin</TrapezoidTabs>
             )}
 
             <li>

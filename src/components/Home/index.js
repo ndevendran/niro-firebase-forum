@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { 
-    withAuthorization, 
+import {
+    withAuthorization,
     withEmailVerification,
-    AuthUserContext, 
+    AuthUserContext,
 } from '../Session';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
+import Button from '../Button';
+import Profile from '../Profile';
+import EditMessageForm from './EditMessageForm.js';
+import Message from './Message.js';
+import './index.css';
 
 const HomePage = () => (
     <div>
@@ -50,8 +55,8 @@ class MessageBase extends Component {
                     }));
 
                 this.setState({
-                    messages: messageList, 
-                    loading: false 
+                    messages: messageList,
+                    loading: false
                 });
             } else {
                 this.setState({ messages: null, loading: false});
@@ -60,7 +65,7 @@ class MessageBase extends Component {
     }
 
     onNextPage = () => {
-        this.setState( 
+        this.setState(
         state => ({ limit: state.limit + 5 }),
             this.onListenForMessages,
         );
@@ -108,13 +113,13 @@ class MessageBase extends Component {
             {authUser => (
                 <div>
                     {!loading && messages && (
-                        <button type="button" onClick={this.onNextPage}>
+                        <Button onClick={this.onNextPage}>
                             More
-                        </button>
+                        </Button>
                     )}
                     {loading && <div> Loading...</div>}
                     {messages ? (
-                        <MessageList messages={messages} 
+                        <MessageList messages={messages}
                             onRemoveMessage={this.onRemoveMessage}
                             onEditMessage={this.onEditMessage}
                             authUser={authUser}
@@ -138,14 +143,14 @@ class MessageBase extends Component {
     }
 }
 
-const MessageList = ({ 
-    messages, onRemoveMessage, 
+const MessageList = ({
+    messages, onRemoveMessage,
     onEditMessage, authUser }) => (
-    <ul>
+    <ul className="messageList">
         {messages.map(message => (
-            <MessageItem 
-                key={message.uid} 
-                message={message} 
+            <MessageItem
+                key={message.uid}
+                message={message}
                 onRemoveMessage={onRemoveMessage}
                 onEditMessage={onEditMessage}
                 authUser={authUser}
@@ -153,19 +158,6 @@ const MessageList = ({
         ))}
     </ul>
 );
-
-// const MessageItem = ({ message, onRemoveMessage, onEditMessage }) => (
-//     <li>
-//         <strong>{message.userId}</strong>
-//         {message.text}
-//         <button
-//             type="button"
-//             onClick={() => onRemoveMessage(message.uid)}
-//         >
-//             Delete
-//         </button>
-//     </li>
-// );
 
 class MessageItem extends Component {
     constructor(props) {
@@ -199,42 +191,56 @@ class MessageItem extends Component {
         const { editMode, editText } = this.state;
 
         return (
-            <li>
-                {editMode ? (
-                    <input
-                        type="text"
-                        value={editText}
-                        onChange={this.onChangeEditText}
-                    />
-                ) : (
-                    <span>
-                        <strong>{message.userId}</strong>
-                        {message.text}
-                        {message.editedAt && <span> (Edited)</span>}
-                    </span>
-                )}
-                {authUser.uid === message.userId && (
-                    <span>
-                        {!editMode && (
-                            <button
-                                type="button"
-                                onClick={() => onRemoveMessage(message.uid)}
-                            >
-                                Delete
-                            </button>
-                        )}
-                        {editMode ? (
-                            <span>
-                                <button onClick={this.onSaveEditText}>Save</button>
-                                <button onClick={this.onToggleEditMode}>Reset</button>
-                            </span>
-                        ) : (
-                            <button onClick={this.onToggleEditMode}>Edit</button>
-                        )}
-                    </span>
-                )}
-
+            <li className="messageContent">
+                <div>
+                  <Profile />
+                </div>
+                <div className="messageContainer">
+                  {editMode ? (
+                      <input
+                          type="text"
+                          value={editText}
+                          onChange={this.onChangeEditText}
+                      />
+                  ) : (
+                      <div>
+                        <div className="cut_corners messageHeader">
+                            <strong>{message.userId}</strong>
+                        </div>
+                        <div className="messageBody">
+                          {message.text}
+                        </div>
+                        <div className="messageFooter">
+                          <div className="header">{message.editedAt && <span> (Edited)</span>}</div>
+                          <div className="body"></div>
+                          <div className="footer">
+                            {authUser.uid === message.userId && (
+                                <span>
+                                    {!editMode && (
+                                        <Button
+                                            type="button"
+                                            onClick={() => onRemoveMessage(message.uid)}
+                                        >
+                                            Delete
+                                        </Button>
+                                    )}
+                                    {editMode ? (
+                                        <span>
+                                            <Button onClick={this.onSaveEditText}>Save</Button>
+                                            <Button onClick={this.onToggleEditMode}>Reset</Button>
+                                        </span>
+                                    ) : (
+                                        <Button onClick={this.onToggleEditMode}>Edit</Button>
+                                    )}
+                                </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                  )}
+                </div>
             </li>
+
         );
     }
 }
