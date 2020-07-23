@@ -7,10 +7,10 @@ import {
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import Button from '../Button';
-import Profile from '../Profile';
 import EditMessageForm from './EditMessageForm.js';
 import Message from './Message.js';
 import './index.css';
+import Profile from '../Profile';
 
 const HomePage = () => (
     <div>
@@ -192,55 +192,24 @@ class MessageItem extends Component {
 
         return (
             <li className="messageContent">
-                <div>
-                  <Profile />
-                </div>
-                <div className="messageContainer">
-                  {editMode ? (
-                      <input
-                          type="text"
-                          value={editText}
-                          onChange={this.onChangeEditText}
-                      />
-                  ) : (
-                      <div>
-                        <div className="cut_corners messageHeader">
-                            <strong>{message.userId}</strong>
-                        </div>
-                        <div className="messageBody">
-                          {message.text}
-                        </div>
-                        <div className="messageFooter">
-                          <div className="header">{message.editedAt && <span> (Edited)</span>}</div>
-                          <div className="body"></div>
-                          <div className="footer">
-                            {authUser.uid === message.userId && (
-                                <span>
-                                    {!editMode && (
-                                        <Button
-                                            type="button"
-                                            onClick={() => onRemoveMessage(message.uid)}
-                                        >
-                                            Delete
-                                        </Button>
-                                    )}
-                                    {editMode ? (
-                                        <span>
-                                            <Button onClick={this.onSaveEditText}>Save</Button>
-                                            <Button onClick={this.onToggleEditMode}>Reset</Button>
-                                        </span>
-                                    ) : (
-                                        <Button onClick={this.onToggleEditMode}>Edit</Button>
-                                    )}
-                                </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                  )}
-                </div>
+              <div>
+                <Profile />
+              </div>
+              <div class="messageContainer">
+              {editMode ? (
+                <EditMessageForm
+                  message={message} onChangeEditText={this.onChangeEditText}
+                  onSaveEditText={this.onSaveEditText} onToggleEditMode={this.onToggleEditMode}
+                  editText={editText}
+                />
+              ) : (
+                <Message
+                  message={message} onRemoveMessage={this.onRemoveMessage}
+                  onToggleEditMode={this.onToggleEditMode} authUser={authUser}
+                />
+              )}
+              </div>
             </li>
-
         );
     }
 }

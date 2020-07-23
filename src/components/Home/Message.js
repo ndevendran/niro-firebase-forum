@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../Button';
 
+
 const Message = ({ message, onRemoveMessage, onToggleEditMode, authUser }) => {
   return (
     <>
