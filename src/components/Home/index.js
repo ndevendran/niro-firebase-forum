@@ -9,13 +9,13 @@ import { compose } from 'recompose';
 import Button from '../Button';
 import EditMessageForm from './EditMessageForm.js';
 import Message from './Message.js';
+import CreateMessage from './CreateMessage.js';
 import './index.css';
 import Profile from '../Profile';
 
 const HomePage = () => (
-    <div>
+    <div className="page-container">
         <h1>Home Page</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
         <Messages />
     </div>
 );
@@ -109,6 +109,12 @@ class MessageBase extends Component {
         const { text, messages, loading } = this.state;
 
         return (
+            <>
+            <CreateMessage
+              onCreateMessage={this.onCreateMessage}
+              text={text}
+              onChangeText={this.onChangeText}
+            />
             <AuthUserContext.Consumer>
             {authUser => (
                 <div>
@@ -127,18 +133,19 @@ class MessageBase extends Component {
                     ) : (
                         <div>There are no messages...</div>
                     )}
-                    <form onSubmit={event => this.onCreateMessage(event, authUser)}>
-                        <input
-                            type="text"
-                            value={text}
-                            onChange={this.onChangeText}
-                        />
-                        <button type="submit">Send</button>
-                    </form>
                 </div>
             )}
 
             </AuthUserContext.Consumer>
+            </>
+            // <form onSubmit={event => this.onCreateMessage(event, authUser)}>
+            //     <input
+            //         type="text"
+            //         value={text}
+            //         onChange={this.onChangeText}
+            //     />
+            //     <button type="submit">Send</button>
+            // </form>
         );
     }
 }
@@ -204,7 +211,7 @@ class MessageItem extends Component {
                 />
               ) : (
                 <Message
-                  message={message} onRemoveMessage={this.onRemoveMessage}
+                  message={message} onRemoveMessage={() => onRemoveMessage(message.uid)}
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
                 />
               )}

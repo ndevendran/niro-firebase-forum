@@ -19,7 +19,7 @@ const Message = ({ message, onRemoveMessage, onToggleEditMode, authUser }) => {
               <span>
                 <Button
                     type="button"
-                    onClick={() => onRemoveMessage(message.uid)}
+                    onClick={onRemoveMessage}
                 >
                     Delete
                 </Button>

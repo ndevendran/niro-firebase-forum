@@ -15,10 +15,14 @@ const EditMessageForm = ({ message, onChangeEditText, onSaveEditText, onToggleEd
         />
       </div>
       <div className="messageFooter">
-        <span>
-            <Button onClick={onSaveEditText}>Save</Button>
-            <Button onClick={onToggleEditMode}>Reset</Button>
-        </span>
+        <div className="header">{message.editedAt && <span> (Edited)</span>}</div>
+        <div className="body"></div>
+        <div className="footer">
+          <span>
+              <Button onClick={onSaveEditText}>Save</Button>
+              <Button onClick={onToggleEditMode}>Reset</Button>
+          </span>
+        </div>
       </div>
     </>
   );

@@ -1,0 +1,30 @@
+.createMessage > .footer {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+.createMessage {
+  padding-left: 5vw;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  min-height: 100%;
+}
+
+.createMessage > .body > textarea {
+  resize: none;
+}
+
+.createMessageContainer {
+  display: flex;
+  height: 10em;
+  width: 50em;
+  border: 1px solid rgba(221,221,221,0.15);
+  background-color: white;
+  box-shadow: 0 0.03rem 0.1rem 0 rgba(0,0,0,0.2);
+  padding: 1em;
+  box-sizing: border-box;
+  color: black;
+  margin-bottom: 10px;
+}
