@@ -8,7 +8,7 @@ import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import Button from '../Button';
 import EditMessageForm from './EditMessageForm.js';
-import Message from './Message.js';
+import MessagePresentation from './Message.js';
 import CreateMessage from './CreateMessage.js';
 import './index.css';
 import Profile from '../Profile';
@@ -110,14 +110,14 @@ class MessageBase extends Component {
 
         return (
             <>
-            <CreateMessage
-              onCreateMessage={this.onCreateMessage}
-              text={text}
-              onChangeText={this.onChangeText}
-            />
             <AuthUserContext.Consumer>
             {authUser => (
                 <div>
+                <CreateMessage
+                  onCreateMessage={event => this.onCreateMessage(event, authUser)}
+                  text={text}
+                  onChangeText={this.onChangeText}
+                />
                     {!loading && messages && (
                         <Button onClick={this.onNextPage}>
                             More
@@ -138,14 +138,6 @@ class MessageBase extends Component {
 
             </AuthUserContext.Consumer>
             </>
-            // <form onSubmit={event => this.onCreateMessage(event, authUser)}>
-            //     <input
-            //         type="text"
-            //         value={text}
-            //         onChange={this.onChangeText}
-            //     />
-            //     <button type="submit">Send</button>
-            // </form>
         );
     }
 }
@@ -210,7 +202,7 @@ class MessageItem extends Component {
                   editText={editText}
                 />
               ) : (
-                <Message
+                <MessagePresentation
                   message={message} onRemoveMessage={() => onRemoveMessage(message.uid)}
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
                 />

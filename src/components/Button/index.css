@@ -10,6 +10,21 @@
     line-height: 1.5;
 }
 
+.btn_flat {
+  padding: .8em 1.6em;
+  background-color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  box-sizing: border-box;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: .2em;
+  line-height: 1.5;
+  margin: auto;
+  font-weight: bold;
+}
+
 ul {
     list-style: none;
 }

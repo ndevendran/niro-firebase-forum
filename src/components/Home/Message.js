@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button';
 
 
-const Message = ({ message, onRemoveMessage, onToggleEditMode, authUser }) => {
+const MessagePresentation = ({ message, onRemoveMessage, onToggleEditMode, authUser }) => {
   return (
     <>
       <div className="cut_corners messageHeader">
@@ -32,4 +32,4 @@ const Message = ({ message, onRemoveMessage, onToggleEditMode, authUser }) => {
   );
 }
 
-export default Message;
+export default MessagePresentation;

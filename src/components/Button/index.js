@@ -8,12 +8,23 @@ class Button extends Component {
 
     render() {
         return(
-            <button className="btn_standard" 
+            <button className="btn_standard"
                 type="button" onClick={this.props.onClick}>
                 {this.props.children}
             </button>
         );
     }
+}
+
+export const ButtonFlat = ({ onClick, children,type }) => {
+  return (
+    <button className="btn_flat"
+      type={type ? type : "button" }
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 }
 
 export default Button;
