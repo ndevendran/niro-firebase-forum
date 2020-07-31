@@ -47,4 +47,20 @@ const NavigationNonAuth = () => (
         </ul>
 );
 
+export const NavigationAccount = () => (
+  <ul className="profileNav">
+    <li>
+      <span className="menuItem">
+        <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
+      </span>
+      <span className="menuItem">
+        <Link to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
+      </span>
+      <span className="menuItem">
+        <Link to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
+      </span>
+    </li>
+  </ul>
+);
+
 export default Navigation;

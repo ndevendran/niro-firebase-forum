@@ -53,3 +53,17 @@ header, header>div>ul {
     height: 48px;
     z-index: 36;
 }
+
+.profileNav {
+  display: flex;
+  border: solid black 1px;
+  justify-content: flex-start;
+  width: 50vw;
+  margin: auto;
+  background-color: black;
+}
+
+.profileNav > li {
+  position: relative;
+  padding: 1.31em;
+}
