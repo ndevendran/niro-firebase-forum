@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MessageList from '../Message/MessageList.js';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
-import CreateMessage from '../Home/CreateMessage.js';
+import CreateMessage from './CreateMessage.js';
 import { AuthUserContext } from '../Session';
 import Button from '../Button';
 import styles from './index.css';

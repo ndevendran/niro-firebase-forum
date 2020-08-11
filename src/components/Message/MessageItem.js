@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditMessageForm from '../Home/EditMessageForm.js';
+import EditMessageForm from './EditMessageForm.js';
 import MessagePresentation from '../Home/Message.js';
 import Profile from '../Profile';
 import styles from './index.css';
