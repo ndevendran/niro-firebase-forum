@@ -7,6 +7,7 @@ import SignOutButton from '../SignOut';
 
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import styles from './index.css';
 
 const Navigation = () => (
     <div>
@@ -19,7 +20,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = ({ authUser }) => (
-        <ul className="navigation">
+        <ul className={styles.navigation}>
             <TrapezoidTabs link={ROUTES.LANDING}>Landing</TrapezoidTabs>
             <TrapezoidTabs link={ROUTES.HOME}>Home</TrapezoidTabs>
             <TrapezoidTabs link={ROUTES.ACCOUNT}>Account</TrapezoidTabs>
@@ -48,15 +49,15 @@ const NavigationNonAuth = () => (
 );
 
 export const NavigationAccount = () => (
-  <ul className="profileNav">
+  <ul className={styles.profileNav}>
     <li>
-      <span className="menuItem">
+      <span className={styles.menuItem}>
         <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
       </span>
-      <span className="menuItem">
+      <span className={styles.menuItem}>
         <Link to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
       </span>
-      <span className="menuItem">
+      <span className={styles.menuItem}>
         <Link to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
       </span>
     </li>

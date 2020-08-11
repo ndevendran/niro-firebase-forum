@@ -23,6 +23,16 @@
   line-height: 1.5;
   margin: auto;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.svgIcon {
+  height: 2.25em;
+  width: 2.25em;
+}
+
+.svgIcon:hover {
+  cursor: pointer;
 }
 
 ul {

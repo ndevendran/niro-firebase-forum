@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Avatar from '../../images/avatar_test_02.jpg';
-import './index.css';
+import styles from './index.css';
 
 class Profile extends Component {
     constructor(props) {
@@ -10,8 +10,8 @@ class Profile extends Component {
 
     render() {
         return(
-            <div className="profile_picture">
-                <img className="avatar" src={Avatar} alt="profile picture" />
+            <div className={styles.profile_picture}>
+                <img className={styles.avatar} src={Avatar} alt="profile picture" />
             </div>
         )
     }

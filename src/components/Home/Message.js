@@ -1,29 +1,32 @@
 import React from 'react';
-import Button from '../Button';
+import Button, { SVGEdit, SVGDelete, SVGLike } from '../Button';
+import styles from './index.css';
 
 
-const MessagePresentation = ({ message, onRemoveMessage, onToggleEditMode, authUser }) => {
+const MessagePresentation = ({ message,
+  onRemoveMessage, onToggleEditMode,
+  onLikeMessage, authUser }) => {
   return (
     <>
-      <div className="cut_corners messageHeader">
+      <div className={styles.messageHeader}>
           <strong>{message.userId}</strong>
       </div>
-      <div className="messageBody">
+      <div className={styles.messageBody}>
         {message.text}
+        {message.editedAt && <span> (Edited)</span>}
       </div>
-      <div className="messageFooter">
-        <div className="header">{message.editedAt && <span> (Edited)</span>}</div>
-        <div className="body"></div>
-        <div className="footer">
+      <div className={styles.messageFooter}>
+        <div className={styles.header}>
+          <span>
+            <SVGLike>Like</SVGLike>
+          </span>
+        </div>
+        <div className={styles.body}></div>
+        <div className={styles.footer}>
           {authUser.uid === message.userId && (
               <span>
-                <Button
-                    type="button"
-                    onClick={onRemoveMessage}
-                >
-                    Delete
-                </Button>
-                <Button onClick={onToggleEditMode}>Edit</Button>
+                <SVGDelete onClick={onRemoveMessage}>Delete</SVGDelete>
+                <SVGEdit onClick={onToggleEditMode}>Edit</SVGEdit>
               </span>
           )}
         </div>

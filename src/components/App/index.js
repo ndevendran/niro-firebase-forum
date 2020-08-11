@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './index.css';
+import styles from './index.css';
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
@@ -16,7 +16,7 @@ import * as ROUTES from '../../constants/routes';
 
 const App = () => (
     <Router>
-        <div className="main_container">
+        <div className={styles.main_container}>
             <header>
               <Navigation />
             </header>
@@ -28,6 +28,7 @@ const App = () => (
               <Route path={ROUTES.ACCOUNT} component={AccountPage} />
               <Route path={ROUTES.ADMIN} component={AdminPage} />
             </main>
+            <div>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </div>
     </Router>
 );

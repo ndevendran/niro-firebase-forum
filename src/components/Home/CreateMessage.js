@@ -1,14 +1,14 @@
 import React from 'react';
 import Profile from '../Profile';
-import './create_message.css';
+import styles from './create_message.css';
 import { ButtonFlat } from '../../components/Button';
 
 const CreateMessage = ({ onCreateMessage, authUser, onChangeText, text }) => {
   return (
-    <div className="createMessageContainer">
+    <div className={styles.createMessageContainer}>
       <Profile />
-      <form className="createMessage" onSubmit={onCreateMessage}>
-        <div className="body">
+      <form className={styles.createMessage} onSubmit={onCreateMessage}>
+        <div className={styles.body}>
           <textarea
               rows="6"
               cols="40"
@@ -17,9 +17,9 @@ const CreateMessage = ({ onCreateMessage, authUser, onChangeText, text }) => {
               onChange={onChangeText}
           />
         </div>
-        <div className="footer">
-          <div className="formatMessage">Format Placeholder</div>
-          <ButtonFlat className="sendMessageBtn" type="submit">Send</ButtonFlat>
+        <div className={styles.footer}>
+          <div className={styles.formatMessage}>Format Placeholder</div>
+          <ButtonFlat className={styles.sendMessageBtn} type="submit">Send</ButtonFlat>
         </div>
       </form>
     </div>

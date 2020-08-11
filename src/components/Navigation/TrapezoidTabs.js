@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './index.css';
+import styles from './index.css';
 
 class TrapezoidTabs extends Component {
     constructor(props) {
@@ -9,8 +9,8 @@ class TrapezoidTabs extends Component {
 
     render() {
         return(
-            <li className="tab">
-                <span className="menuItem">
+            <li className={styles.tab}>
+                <span className={styles.menuItem}>
                   <Link to={this.props.link}>{this.props.children}</Link>
                 </span>
             </li>

@@ -12,7 +12,7 @@ import PasswordChangeForm from '../PasswordChange';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './index.css';
+import styles from './index.css';
 
 const SIGN_IN_METHODS = [
     {
@@ -37,10 +37,10 @@ const AccountPage = () => (
     <Router>
     <AuthUserContext.Consumer>
         {authUser => (
-            <div className="accountPage">
+            <div className={styles.accountPage}>
                 <h1>Account: {authUser.email}</h1>
                 <NavigationAccount />
-                <div className="accountMain">
+                <div className={styles.accountMain}>
                 <Route exact path={ROUTES.PASSWORD_FORGET}><PasswordForgetForm /></Route>
                 <Route path={ROUTES.PASSWORD_CHANGE}><PasswordChangeForm /></Route>
                 <Route path={ROUTES.SIGN_IN_METHODS}><LoginManagement authUser={authUser}/></Route>
@@ -116,7 +116,7 @@ class LoginManagementBase extends Component
     render() {
         const { activeSignInMethods, error } = this.state;
         return (
-            <div className="page_container">
+            <div className={styles.page_container}>
                 Sign In Methods:
                 <ul>
                     {SIGN_IN_METHODS.map(signInMethod => {
