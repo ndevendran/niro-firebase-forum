@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditMessageForm from './EditMessageForm.js';
-import MessagePresentation from '../Home/Message.js';
+import MessagePresentation from './MessagePresentation.js';
 import Profile from '../Profile';
 import styles from './index.css';
 

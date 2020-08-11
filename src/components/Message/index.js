@@ -62,21 +62,6 @@ class MessageBase extends Component {
         this.props.firebase.messages().off();
     }
 
-    onChangeText = event => {
-        this.setState({ text: event.target.value });
-    }
-
-    onCreateMessage = (event, authUser) => {
-        this.props.firebase.messages().push({
-            text: this.state.text,
-            userId: authUser.uid,
-            createdAt: this.props.firebase.serverValue.TIMESTAMP,
-        });
-
-        this.setState({ text: '' });
-
-        event.preventDefault();
-    };
 
     onRemoveMessage = uid => {
         this.props.firebase.message(uid).remove();
@@ -101,9 +86,7 @@ class MessageBase extends Component {
             {authUser => (
                 <div>
                 <CreateMessage
-                  onCreateMessage={event => this.onCreateMessage(event, authUser)}
-                  text={text}
-                  onChangeText={this.onChangeText}
+                  authUser={authUser}
                 />
                     {!loading && messages && (
                         <Button onClick={this.onNextPage}>
