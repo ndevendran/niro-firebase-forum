@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './index.css';
+import { ButtonPop } from '../Button';
 
 import { withFirebase } from '../Firebase';
 
 const SignOutButton = ({ firebase }) =>
 (
-    <button className={styles.btn_signout} type="button" onClick={firebase.doSignOut}>
+    <ButtonPop type="button" onClick={firebase.doSignOut}>
         Sign Out
-    </button>
+    </ButtonPop>
 );
 
 export default withFirebase(SignOutButton);

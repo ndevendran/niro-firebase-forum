@@ -11,7 +11,7 @@ class TrapezoidTabs extends Component {
         return(
             <li className={styles.tab}>
                 <span className={styles.menuItem}>
-                  <Link to={this.props.link}>{this.props.children}</Link>
+                  <Link className={styles.navLink} to={this.props.link}>{this.props.children}</Link>
                 </span>
             </li>
         );

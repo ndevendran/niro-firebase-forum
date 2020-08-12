@@ -31,6 +31,17 @@ export const ButtonFlat = ({ onClick, children,type }) => {
   );
 }
 
+export const ButtonPop = ({ onClick, children,type }) => {
+  return (
+    <div className={styles.btn_pop}
+      type={type ? type : "button" }
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+}
+
 export const SVGEdit = ({ onClick, children }) => {
   return (
       <img src={EditIcon} className={styles.svgIcon} alt={children} onClick={onClick} />
