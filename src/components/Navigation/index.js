@@ -52,13 +52,17 @@ export const NavigationAccount = () => (
   <ul className={styles.profileNav}>
     <li>
       <span className={styles.menuItem}>
-        <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
+        <Link className={styles.navLink} to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
       </span>
+    </li>
+    <li>
       <span className={styles.menuItem}>
-        <Link to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
+        <Link className={styles.navLink} to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
       </span>
+    </li>
+    <li>
       <span className={styles.menuItem}>
-        <Link to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
+        <Link className={styles.navLink} to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
       </span>
     </li>
   </ul>

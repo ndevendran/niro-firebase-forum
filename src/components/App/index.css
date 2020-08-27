@@ -2,12 +2,13 @@
   background-color: #DAE0E6;
   font-size: 15px;
   font-family: -apple-system, system-ui;
+  display: grid;
+  grid-template-rows: 100px [main-start] 1fr;
 }
 
 main {
  flex: 1;
- padding-top: 5vw;
- height: 100vw;
+ grid-row-start: main-start;
 }
 
 main > div {
@@ -17,4 +18,9 @@ main > div {
 header {
   width: 275px;
   box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }

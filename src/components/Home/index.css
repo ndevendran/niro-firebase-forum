@@ -1,6 +1,14 @@
 .pageContainer {
-  margin: auto 25%;
+  /* margin: auto 25%; */
+  display: grid;
+  grid-template-columns: [nav-start] 20vw [content-start] 60vw [main-end] 20vw;
+  /* grid-template-rows: [main-start] 300px; */
   padding-bottom: 10em;
+}
+
+.contentContainer {
+  grid-column-start: content-start;
+  /* grid-row-start: main-start; */
 }
 
 h1 {
@@ -13,69 +21,3 @@ h1 {
   box-shadow: 0 0.03rem 0.1rem 0 rgba(0,0,0,0.2);
   box-sizing: border-box;
 }
-
-.messageContent {
-  display: flex;
-  height: 10em;
-  width: 50em;
-  border: 1px solid rgba(221,221,221,0.15);
-  background-color: white;
-  box-shadow: 0 0.03rem 0.1rem 0 rgba(0,0,0,0.2);
-  padding: 1em;
-  box-sizing: border-box;
-  color: black;
-}
-
-.messageBody {
-  height: 50%;
-  flex: 1;
-}
-
-.messageHeader {
-  padding-bottom: 1em;
-}
-
-.messageFooter {
-  display: flex;
-  justify-content: space-between;
-  min-width: 100%;
-}
-
-.messageFooter > header {
-  min-width: 1em;
-}
-
-.messageFooter > body {
-  flex: 1;
-}
-
-.messageContainer {
-  padding-left: 5vw;
-  display: flex;
-  flex-flow: column;
-  flex-grow: 1;
-  min-height: 100%;
-}
-
-.messageList {
-  border: 1px solid rgba(221,221,221,0.15);
-  width: 50em;
-  padding-left: 0;
-}
-
-.messageList > li:nth-child(1) {
-  border-radius: 2.5px 2.5px 0 0;
-}
-
-.messageList > li:last-child {
-  border-radius: 0 0 2.5px 2.5px;
-}
-
-/* .cut_corners {
-    min-width: 150%;
-    padding-right: 30px;
-    padding-left: 30px;
-    background: #58a;
-    border-width: 15px;
-    corner-shape: bevel;
-} */

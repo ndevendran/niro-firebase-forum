@@ -13,7 +13,7 @@
 .navigation {
   display: flex;
   align-items: center;
-  background-color: black;
+  background-color: rgba(0,0,0,0.6);
   width: 100%;
   justify-content: flex-start;
   box-sizing: border-box;
@@ -95,14 +95,26 @@ header, header>div>ul {
 
 .profileNav {
   display: flex;
-  border: solid black 1px;
-  justify-content: flex-start;
-  width: 50vw;
-  margin: auto;
+  align-items: center;
   background-color: black;
+  width: 100%;
+  justify-content: space-around;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
 }
 
 .profileNav > li {
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.31;
+  color: #e1e1e1;
   position: relative;
-  padding: 1.31em;
+  margin-left: 1em;
+  margin-right: 1em;
+  box-sizing: border-box;
+  padding-bottom: .25em;
 }

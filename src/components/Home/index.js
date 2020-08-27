@@ -10,8 +10,10 @@ import Messages from '../Message';
 
 const HomePage = () => (
     <div className={styles.pageContainer}>
-        <h1>Home Page</h1>
-        <Messages />
+        <div className={styles.contentContainer}>
+          <h1>Home Page</h1>
+          <Messages />
+        </div>
     </div>
 );
 

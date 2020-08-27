@@ -38,12 +38,13 @@ const AccountPage = () => (
     <AuthUserContext.Consumer>
         {authUser => (
             <div className={styles.accountPage}>
-                <h1>Account: {authUser.email}</h1>
-                <NavigationAccount />
+                <NavigationAccount className={styles.accountNavigation} />
+
                 <div className={styles.accountMain}>
-                <Route exact path={ROUTES.PASSWORD_FORGET}><PasswordForgetForm /></Route>
-                <Route path={ROUTES.PASSWORD_CHANGE}><PasswordChangeForm /></Route>
-                <Route path={ROUTES.SIGN_IN_METHODS}><LoginManagement authUser={authUser}/></Route>
+                  <h1>Account: {authUser.email}</h1>
+                  <Route exact path={ROUTES.PASSWORD_FORGET}><PasswordForgetForm /></Route>
+                  <Route path={ROUTES.PASSWORD_CHANGE}><PasswordChangeForm /></Route>
+                  <Route path={ROUTES.SIGN_IN_METHODS}><LoginManagement authUser={authUser}/></Route>
                 </div>
             </div>
         )}
