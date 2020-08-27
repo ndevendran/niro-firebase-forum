@@ -32,10 +32,10 @@ class CreateMessage extends Component {
 
   render() {
     return (
-      <div className={styles.createMessageContainer}>
+      <div>
         <Profile />
-        <form className={styles.createMessage} onSubmit={this.onCreateMessage}>
-          <div className={styles.body}>
+        <form onSubmit={this.onCreateMessage}>
+          <div>
             <textarea
                 rows="6"
                 cols="40"
@@ -44,9 +44,9 @@ class CreateMessage extends Component {
                 onChange={this.onChangeText}
             />
           </div>
-          <div className={styles.footer}>
-            <div className={styles.formatMessage}>Format Placeholder</div>
-            <ButtonFlat className={styles.sendMessageBtn} type="submit">Send</ButtonFlat>
+          <div>
+            <div>Format Placeholder</div>
+            <ButtonFlat type="submit">Send</ButtonFlat>
           </div>
         </form>
       </div>

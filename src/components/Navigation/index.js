@@ -20,7 +20,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = ({ authUser }) => (
-        <ul className={styles.navigation}>
+        <ul>
             <TrapezoidTabs link={ROUTES.LANDING}>Landing</TrapezoidTabs>
             <TrapezoidTabs link={ROUTES.HOME}>Home</TrapezoidTabs>
             <TrapezoidTabs link={ROUTES.ACCOUNT}>Account</TrapezoidTabs>
@@ -49,20 +49,20 @@ const NavigationNonAuth = () => (
 );
 
 export const NavigationAccount = () => (
-  <ul className={styles.profileNav}>
+  <ul>
     <li>
-      <span className={styles.menuItem}>
-        <Link className={styles.navLink} to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
+      <span>
+        <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
       </span>
     </li>
     <li>
-      <span className={styles.menuItem}>
-        <Link className={styles.navLink} to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
+      <span>
+        <Link to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
       </span>
     </li>
     <li>
-      <span className={styles.menuItem}>
-        <Link className={styles.navLink} to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
+      <span>
+        <Link to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
       </span>
     </li>
   </ul>

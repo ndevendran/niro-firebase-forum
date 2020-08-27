@@ -40,11 +40,11 @@ class MessageItem extends Component {
         const { editMode, editText } = this.state;
 
         return (
-            <li className={styles.messageContent}>
+            <li>
               <div>
                 <Profile />
               </div>
-              <div className={styles.messageContainer}>
+              <div>
               {editMode ? (
                 <EditMessageForm
                   message={message} onChangeEditText={this.onChangeEditText}

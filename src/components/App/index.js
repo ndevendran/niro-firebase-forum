@@ -16,7 +16,7 @@ import * as ROUTES from '../../constants/routes';
 
 const App = () => (
     <Router>
-        <div className={styles.main_container}>
+        <div>
             <header>
               <Navigation />
             </header>

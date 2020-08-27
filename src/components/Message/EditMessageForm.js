@@ -5,10 +5,10 @@ import styles from './index.css';
 const EditMessageForm = ({ message, onChangeEditText, onSaveEditText, onToggleEditMode, editText, placeholder }) => {
   return (
     <>
-      <div className={styles.messageHeader}>
+      <div>
         <strong>{message.userId}</strong>
       </div>
-      <div className={styles.messageBody}>
+      <div>
         <input
             type="text"
             value={editText}
@@ -16,10 +16,10 @@ const EditMessageForm = ({ message, onChangeEditText, onSaveEditText, onToggleEd
             placeholder={placeholder}
         />
       </div>
-      <div className={styles.messageFooter}>
-        <div className={styles.header}>{message.editedAt && <span> (Edited)</span>}</div>
-        <div className={styles.body}></div>
-        <div className={styles.footer}>
+      <div>
+        <div>{message.editedAt && <span> (Edited)</span>}</div>
+        <div></div>
+        <div>
           <span>
               <Button onClick={onSaveEditText}>Save</Button>
               <Button onClick={onToggleEditMode}>Reset</Button>

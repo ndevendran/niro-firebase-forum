@@ -8,21 +8,21 @@ const MessagePresentation = ({ message,
   onLikeMessage, authUser }) => {
   return (
     <>
-      <div className={styles.messageHeader}>
+      <div>
           <strong>{message.userId}</strong>
       </div>
-      <div className={styles.messageBody}>
+      <div>
         {message.text}
         {message.editedAt && <span> (Edited)</span>}
       </div>
-      <div className={styles.messageFooter}>
-        <div className={styles.header}>
+      <div>
+        <div>
           <span>
             <SVGLike>Like</SVGLike>
           </span>
         </div>
-        <div className={styles.body}></div>
-        <div className={styles.footer}>
+        <div></div>
+        <div>
           {authUser.uid === message.userId && (
               <span>
                 <SVGDelete onClick={onRemoveMessage}>Delete</SVGDelete>
