@@ -8,14 +8,14 @@ const MessagePresentation = ({ message,
   onLikeMessage, authUser }) => {
   return (
     <>
-      <div>
+      <div className={styles.messageHeader}>
           <strong>{message.userId}</strong>
       </div>
-      <div>
+      <div className={styles.messageBody}>
         {message.text}
         {message.editedAt && <span> (Edited)</span>}
       </div>
-      <div>
+      <div className={styles.messageFunctions}>
         <div>
           <span>
             <SVGLike>Like</SVGLike>
