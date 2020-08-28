@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthUserContext } from '../Session';
 import TrapezoidTabs from './TrapezoidTabs.js';
@@ -19,20 +19,63 @@ const Navigation = () => (
     </div>
 );
 
-const NavigationAuth = ({ authUser }) => (
-        <ul>
-            <TrapezoidTabs link={ROUTES.LANDING}>Landing</TrapezoidTabs>
-            <TrapezoidTabs link={ROUTES.HOME}>Home</TrapezoidTabs>
-            <TrapezoidTabs link={ROUTES.ACCOUNT}>Account</TrapezoidTabs>
-            {authUser.roles[ROLES.ADMIN] && (
-                <TrapezoidTabs link={ROUTES.ADMIN}>Admin</TrapezoidTabs>
-            )}
+class NavigationAuth extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuOpen: false
+    };
 
-            <li>
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu() {
+    this.setState(prevState => ({
+      menuOpen: !prevState.menuOpen
+    }));
+  }
+
+  render() {
+    const authUser = this.props.authUser;
+    return (
+      <>
+      <div onClick={this.toggleMenu}>Menu</div>
+      {
+        this.state.menuOpen &&
+        <ul className={styles.authNav}>
+            <li className={styles.navItem}>
+              <span>
+                <Link to={ROUTES.LANDING}>Landing</Link>
+              </span>
+            </li>
+            <li className={styles.navItem}>
+              <span>
+                <Link to={ROUTES.HOME}>Home</Link>
+              </span>
+            </li>
+            <li className={styles.navItem}>
+              <span>
+                <Link to={ROUTES.ACCOUNT}>Account</Link>
+              </span>
+            </li>
+            {authUser.roles[ROLES.ADMIN] && (
+              <li className={styles.navItem}>
+                <span>
+                  <Link to={ROUTES.ADMIN}>Admin</Link>
+                </span>
+              </li>
+            )}
+            <li className={styles.navItem}>
                 <SignOutButton />
             </li>
         </ul>
-);
+      }
+
+      </>
+    );
+  }
+}
+
 
 const NavigationNonAuth = () => (
         <ul>
