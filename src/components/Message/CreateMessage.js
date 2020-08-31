@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Profile from '../Profile';
-import styles from './create_message.css';
+import styles from './index.css';
 import { ButtonFlat } from '../../components/Button';
 import { withFirebase } from '../Firebase';
 
@@ -8,9 +8,9 @@ class CreateMessage extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       text: '',
+      showCreateMessage: false,
     };
   }
 
@@ -30,26 +30,44 @@ class CreateMessage extends Component {
       this.setState({ text: event.target.value });
   }
 
+  onToggleCreate = () => {
+    if(this.state.showCreateMessage) {
+      this.refs.createMessage.style.display = "none";
+    } else {
+      this.refs.createMessage.style.display = "flex";
+    }
+
+    this.setState((prevState, props) => ({
+      showCreateMessage: !prevState.showCreateMessage,
+    }));
+  }
+
+
   render() {
     return (
-      <div>
-        <Profile />
-        <form onSubmit={this.onCreateMessage}>
-          <div>
-            <textarea
-                rows="6"
-                cols="40"
-                type="text"
-                value={this.state.text}
-                onChange={this.onChangeText}
-            />
+      <>
+        <div className={styles.toggleCreate} onClick={this.onToggleCreate}>Msg</div>
+        <div className={styles.createContainer} ref='createMessage'>
+          <div className={styles.avatarContainer}>
+            <Profile />
           </div>
-          <div>
-            <div>Format Placeholder</div>
-            <ButtonFlat type="submit">Send</ButtonFlat>
+          <div className={styles.createBody}>
+            <form onSubmit={this.onCreateMessage}>
+                <textarea
+                    rows="6"
+                    cols="40"
+                    type="text"
+                    value={this.state.text}
+                    onChange={this.onChangeText}
+                />
+              <div className={styles.createFooter}>
+                <div>Format Placeholder</div>
+                <ButtonFlat type="submit">Send</ButtonFlat>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+        </div>
+      </>
     );
   }
 }
