@@ -1,1 +1,24 @@
+.flexNavigation {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+}
 
+.toggleCreate {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggleCreate a {
+  border: 1px solid black;
+  background: black;
+  color: white;
+  text-align: center;
+  height: 59px;
+  width: 59px;
+  border-radius: 99999px;
+}

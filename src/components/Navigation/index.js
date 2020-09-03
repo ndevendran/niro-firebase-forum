@@ -39,9 +39,6 @@ class NavigationAuth extends Component {
     const authUser = this.props.authUser;
     return (
       <>
-      <div onClick={this.toggleMenu}>Menu</div>
-      {
-        this.state.menuOpen &&
         <ul className={styles.authNav}>
             <li className={styles.navItem}>
               <span>
@@ -69,8 +66,6 @@ class NavigationAuth extends Component {
                 <SignOutButton />
             </li>
         </ul>
-      }
-
       </>
     );
   }

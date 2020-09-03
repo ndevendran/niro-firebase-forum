@@ -45,8 +45,6 @@ class CreateMessage extends Component {
 
   render() {
     return (
-      <>
-        <div className={styles.toggleCreate} onClick={this.onToggleCreate}>Msg</div>
         <div className={styles.createContainer} ref='createMessage'>
           <div className={styles.avatarContainer}>
             <Profile />
@@ -67,7 +65,6 @@ class CreateMessage extends Component {
             </form>
           </div>
         </div>
-      </>
     );
   }
 }
