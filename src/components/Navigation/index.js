@@ -42,7 +42,7 @@ class NavigationAuth extends Component {
         <ul className={styles.authNav}>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.LANDING}>Landing</Link>
+                <Link to={ROUTES.LANDING}>Land</Link>
               </span>
             </li>
             <li className={styles.navItem}>
@@ -52,7 +52,7 @@ class NavigationAuth extends Component {
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
+                <Link to={ROUTES.ACCOUNT}>User</Link>
               </span>
             </li>
             {authUser.roles[ROLES.ADMIN] && (
