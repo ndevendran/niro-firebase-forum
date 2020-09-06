@@ -9,7 +9,11 @@
 }
 
 .avatarContainer {
-  flex-basis: 20%;
+  flex-basis: 49px;
+  flex-grow:0;
+  flex-shrink:0;
+  border-radius: 9999px;
+  min-height:150px;
   padding-right: 3%;
 }
 
@@ -56,4 +60,14 @@
 
 .createFooter {
   display: flex;
+}
+
+.MoreButton {
+  height: 2.5vh;
+}
+
+.messageList {
+  max-width: 600px;
+  height: 95vh;
+  overflow-y: scroll;
 }

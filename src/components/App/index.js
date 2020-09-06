@@ -12,13 +12,13 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import { CreateMessage } from '../Message'
-import { withAuthentication } from '../Session';
+import { withAuthentication, AuthUserContext } from '../Session';
 
 import * as ROUTES from '../../constants/routes';
 
 const App = () => (
     <Router>
-        <div>
+        <div className={styles.fullPage}>
             <header>
               <div className={styles.flexNavigation}>
                 <div>
@@ -30,7 +30,11 @@ const App = () => (
               </div>
             </header>
             <main>
-              <Route path={ROUTES.MESSAGE} component={CreateMessage} />
+            <AuthUserContext.Consumer>
+            {authUser => (
+              <Route path={ROUTES.MESSAGE} component={()=><CreateMessage authUser={authUser}/>}/>
+            )}
+            </AuthUserContext.Consumer>
               <Route exact path={ROUTES.LANDING} component={LandingPage} />
               <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
               <Route path={ROUTES.SIGN_IN} component={SignInPage} />

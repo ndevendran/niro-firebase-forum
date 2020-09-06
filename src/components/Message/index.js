@@ -86,7 +86,7 @@ class MessageBase extends Component {
             {authUser => (
                 <div>
                     {!loading && messages && (
-                        <Button onClick={this.onNextPage}>
+                        <Button onClick={this.onNextPage} className={styles.MoreButton}>
                             More
                         </Button>
                     )}

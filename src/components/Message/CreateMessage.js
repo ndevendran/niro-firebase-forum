@@ -3,6 +3,7 @@ import Profile from '../Profile';
 import styles from './index.css';
 import { ButtonFlat } from '../../components/Button';
 import { withFirebase } from '../Firebase';
+import { withAuthentication } from '../Session';
 
 class CreateMessage extends Component {
 

@@ -6,6 +6,7 @@ import {
 import { compose } from 'recompose';
 import Profile from '../Profile';
 import Messages from '../Message';
+import './index.css';
 
 const HomePage = () => (
     <div>

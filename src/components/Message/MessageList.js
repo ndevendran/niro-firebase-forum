@@ -5,7 +5,7 @@ import styles from './index.css';
 const MessageList = ({
     messages, onRemoveMessage,
     onEditMessage, authUser }) => (
-    <ul>
+    <ul className={styles.messageList}>
         {messages.map(message => (
             <MessageItem
                 key={message.uid}
