@@ -1,9 +1,12 @@
 .navItem {
+  font-family: 'IcoMoon' !important;
+  font-size: 20px;
+  speak: none;
   border: 1px solid #666;
   background-color: #eee;
   padding: 10px 1%;
   margin: 3px 0 0;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-align: center;
   box-sizing: border-box;
   width: 25%;
@@ -14,6 +17,7 @@
 .navItem a {
     text-decoration: none;
     font-size: 1.2em;
+    color: black;
 }
 
 .authNav {

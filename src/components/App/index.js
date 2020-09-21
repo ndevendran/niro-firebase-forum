@@ -13,6 +13,7 @@ import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import { CreateMessage } from '../Message'
 import { withAuthentication, AuthUserContext } from '../Session';
+import QuillIcon from '../../images/008-quill.svg';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -22,7 +23,10 @@ const App = () => (
             <header>
               <div className={styles.flexNavigation}>
                 <div>
-                  <div className={styles.toggleCreate}><Link to={ROUTES.MESSAGE}>Msg</Link></div>
+                  <div className={styles.toggleCreate}>
+                  <Link to={ROUTES.MESSAGE}>
+                    pencil
+                  </Link></div>
                 </div>
                 <div>
                   <Navigation />

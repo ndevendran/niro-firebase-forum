@@ -2,6 +2,13 @@ html {
   font: 100% system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
 }
 
+@font-face {
+  font-family: 'IcoMoon';
+  src: url('../../fonts/IcoMoon-Free.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .flexNavigation {
   display: flex;
   flex-direction: column;
@@ -10,17 +17,22 @@ html {
   right: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .toggleCreate {
+  font-family: 'IcoMoon' !important;
   display: flex;
   justify-content: flex-end;
 }
 
 .toggleCreate a {
   border: 1px solid black;
-  background: black;
   color: white;
+  background: black;
+  padding-top: 10px;
+  font-size: 32px;
+  box-sizing: border-box;
   text-align: center;
   height: 59px;
   width: 59px;

@@ -22,17 +22,7 @@ const Navigation = () => (
 class NavigationAuth extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      menuOpen: false
-    };
 
-    this.toggleMenu = this.toggleMenu.bind(this);
-  }
-
-  toggleMenu() {
-    this.setState(prevState => ({
-      menuOpen: !prevState.menuOpen
-    }));
   }
 
   render() {
@@ -42,23 +32,23 @@ class NavigationAuth extends Component {
         <ul className={styles.authNav}>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.LANDING}>Land</Link>
+                <Link to={ROUTES.LANDING} id="landingMainNav">news</Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.HOME}>Home</Link>
+                <Link to={ROUTES.HOME} id="homeMainNav">home3</Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.ACCOUNT}>User</Link>
+                <Link to={ROUTES.ACCOUNT} id="userMainNav">user</Link>
               </span>
             </li>
             {authUser.roles[ROLES.ADMIN] && (
               <li className={styles.navItem}>
                 <span>
-                  <Link to={ROUTES.ADMIN}>Admin</Link>
+                  <Link to={ROUTES.ADMIN} id="adminMainNav">Admin</Link>
                 </span>
               </li>
             )}
