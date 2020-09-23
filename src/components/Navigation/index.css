@@ -28,6 +28,18 @@
   height: 100%;
 }
 
+#listMainNav {
+  display: none;
+}
+
+#bookmarksMainNav {
+  display: none;
+}
+
+#messagesMainNav {
+  display: none;
+}
+
 @media only screen and (min-width: 40em) {
   .authNav {
     flex-direction: column;
@@ -37,6 +49,18 @@
 
   .navItem {
     width: 100%;
+  }
+
+  #listMainNav {
+    display: block;
+  }
+
+  #bookmarksMainNav {
+    display: block;
+  }
+
+  #messagesMainNav {
+    display: block;
   }
 }
 

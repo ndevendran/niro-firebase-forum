@@ -52,9 +52,19 @@ class NavigationAuth extends Component {
                 </span>
               </li>
             )}
+            <li className={styles.navItem} id={styles.listMainNav}>
+              <span>list</span>
+            </li>
+            <li className={styles.navItem} id={styles.messagesMainNav}>
+              <span>envelop</span>
+            </li>
+            <li className={styles.navItem} id={styles.bookmarksMainNav}>
+              <span>bookmark</span>
+            </li>
             <li className={styles.navItem}>
                 <SignOutButton />
             </li>
+
         </ul>
       </>
     );

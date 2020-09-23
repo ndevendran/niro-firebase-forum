@@ -24,7 +24,7 @@ const App = () => (
               <div className={styles.flexNavigation}>
                   <div className={styles.toggleCreate}>
                     <Link to={ROUTES.MESSAGE}>
-                      pencil
+                      power
                     </Link>
                   </div>
                 <div className={styles.innerNav}>
