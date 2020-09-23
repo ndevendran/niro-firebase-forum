@@ -31,18 +31,6 @@ class CreateMessage extends Component {
       this.setState({ text: event.target.value });
   }
 
-  onToggleCreate = () => {
-    if(this.state.showCreateMessage) {
-      this.refs.createMessage.style.display = "none";
-    } else {
-      this.refs.createMessage.style.display = "flex";
-    }
-
-    this.setState((prevState, props) => ({
-      showCreateMessage: !prevState.showCreateMessage,
-    }));
-  }
-
 
   render() {
     return (

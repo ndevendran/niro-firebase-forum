@@ -24,10 +24,20 @@ html {
 .toggleCreate {
   font-family: 'IcoMoon' !important;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-self: flex-end;
+  border: 1px solid black;
+  color: white;
+  background: black;
+  padding-top: 10px;
+  font-size: 32px;
+  box-sizing: border-box;
+  height: 59px;
+  width: 59px;
+  border-radius: 100%;
 }
 
-.toggleCreate a {
+.toggleCreate {
   border: 1px solid black;
   color: white;
   background: black;
@@ -40,7 +50,25 @@ html {
   border-radius: 99999px;
 }
 
-footer {
+.createMessageLightbox {
+  position: absolute;
+  z-index: 3;
+  top: 50vh;
+  background-color: white;
+  max-width: 600px;
+}
+
+.overlay {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.8);
+}
+
+aside {
   display: none;
 }
 
@@ -102,8 +130,7 @@ footer {
     width: 20vw;
   } */
 
-  footer {
+  aside {
     display: inherit;
-    flex-basis: 3;
   }
 }

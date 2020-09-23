@@ -8,7 +8,7 @@ class Promotional extends Component {
 
     this.state = {
       promos: [
-        {"title": "Promo 1", "content": "Test Promotional"}
+        {id: "1", "title": "Promo 1", "content": "Test Promotional"}
       ],
     };
   }
@@ -22,7 +22,7 @@ class Promotional extends Component {
         </div>
         <section className={styles.promoContainer}>
           {this.state.promos.map(promo => (
-            <article>
+            <article key={promo.id}>
               <div>{promo.title}</div>
               <div>{promo.content}</div>
             </article>

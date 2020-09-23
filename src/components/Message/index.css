@@ -44,6 +44,11 @@
   max-width: 600px;
 }
 
+.lightbox {
+  z-index: 3;
+  position: relative;
+}
+
 .createBody {
   width: 75%;
   height: 75%;
@@ -70,11 +75,15 @@
 
 .messageList {
   max-width: 600px;
-  height: 75vh;
+  height: 85vh;
   overflow-y: scroll;
 }
 
 @media only screen and (min-width: 40em) {
+  .messageList {
+    height: 75vh;
+  }
+
   .createContainer {
     display: block;
   }
