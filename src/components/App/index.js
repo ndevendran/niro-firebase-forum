@@ -11,6 +11,7 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import Promotional from '../Promotional';
 import { CreateMessage } from '../Message'
 import { withAuthentication, AuthUserContext } from '../Session';
 import QuillIcon from '../../images/008-quill.svg';
@@ -44,9 +45,9 @@ const App = () => (
               <Route path={ROUTES.HOME} component={HomePage} />
               <Route path={ROUTES.ACCOUNT} component={AccountPage} />
               <Route path={ROUTES.ADMIN} component={AdminPage} />
-              <footer>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry
-                </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-              </footer>
+              <aside>
+                <Promotional />
+              </aside>
             </main>
 
         </div>

@@ -70,7 +70,7 @@
 
 .messageList {
   max-width: 600px;
-  height: 95vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 
