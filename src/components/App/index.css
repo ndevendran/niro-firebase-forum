@@ -53,7 +53,8 @@ html {
 .createMessageLightbox {
   position: absolute;
   z-index: 3;
-  top: 50vh;
+  top: 30%;
+  margin: auto;
   background-color: white;
   max-width: 600px;
 }
