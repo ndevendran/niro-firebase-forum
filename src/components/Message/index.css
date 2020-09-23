@@ -40,9 +40,7 @@
 }
 
 .createContainer {
-  display: flex;
-  height: 100vh;
-  background-color: white;
+  display: none;
 }
 
 .createBody {
@@ -73,4 +71,10 @@
   max-width: 600px;
   height: 95vh;
   overflow-y: scroll;
+}
+
+@media only screen and (min-width: 40em) {
+  .createContainer {
+    display: block;
+  }
 }

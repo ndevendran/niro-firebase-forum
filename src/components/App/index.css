@@ -54,13 +54,15 @@ footer {
   }
 
   .flexNavigation {
-    position: webkit-sticky;
-    position: sticky;
+    position: relative;
     top: -1;
     width: 100px;
     padding-right: 10px;
     padding-left: 10px;
     flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100vh;
   }
 
   .toggleCreate {
@@ -74,18 +76,29 @@ footer {
   }
 
   main {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
     flex-grow: 2;
-    flex-shrink: 1;
     box-sizing: border-box;
+  }
+
+  .innerNav {
+    height: 35%;
+  }
+
+  .innerNav div {
+    height: 100%;
   }
 }
 
 @media only screen and (min-width: 57em) {
-  .flexNavigation {
+  /* .flexNavigation {
     width: 20vw;
-  }
+  } */
 
   footer {
     display: inherit;
+    flex-basis: 3;
   }
 }

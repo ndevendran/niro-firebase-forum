@@ -85,6 +85,9 @@ class MessageBase extends Component {
             <AuthUserContext.Consumer>
             {authUser => (
                 <div>
+                    <div className={styles.createContainer}>
+                      <CreateMessage authUser={authUser} />
+                    </div>
                     {!loading && messages && (
                         <Button onClick={this.onNextPage} className={styles.MoreButton}>
                             More
@@ -102,7 +105,6 @@ class MessageBase extends Component {
                     )}
                 </div>
             )}
-
             </AuthUserContext.Consumer>
             </>
         );

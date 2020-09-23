@@ -46,11 +46,11 @@ class CreateMessage extends Component {
 
   render() {
     return (
-        <div className={styles.createContainer} ref='createMessage'>
+        <div className={styles.container} ref='createMessage'>
           <div className={styles.avatarContainer}>
             <Profile />
           </div>
-          <div className={styles.createBody}>
+          <div className={styles.messageContainer}>
             <form onSubmit={this.onCreateMessage}>
                 <textarea
                     rows="6"

@@ -22,13 +22,12 @@ const App = () => (
         <div className={styles.fullPage}>
             <header>
               <div className={styles.flexNavigation}>
-                <div>
                   <div className={styles.toggleCreate}>
-                  <Link to={ROUTES.MESSAGE}>
-                    pencil
-                  </Link></div>
-                </div>
-                <div>
+                    <Link to={ROUTES.MESSAGE}>
+                      pencil
+                    </Link>
+                  </div>
+                <div className={styles.innerNav}>
                   <Navigation />
                 </div>
               </div>
@@ -45,10 +44,11 @@ const App = () => (
               <Route path={ROUTES.HOME} component={HomePage} />
               <Route path={ROUTES.ACCOUNT} component={AccountPage} />
               <Route path={ROUTES.ADMIN} component={AdminPage} />
+              <footer>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry
+                </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+              </footer>
             </main>
-            <footer>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry
-              </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-            </footer>
+
         </div>
     </Router>
 );
