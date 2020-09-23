@@ -37,3 +37,28 @@
     width: 100%;
   }
 }
+
+@media only screen and (min-width: 57em) {
+  .authNav {
+    width: 20vw;
+  }
+
+  .navItem {
+    width: 100%;
+  }
+
+  #landingMainNav::after {
+    font-family: sans-serif;
+    content: 'Landing';
+  }
+
+  #userMainNav::after {
+    font-family: sans-serif;
+    content: 'User';
+  }
+
+  #homeMainNav::after {
+    font-family: sans-serif;
+    content: 'Home';
+  }
+}

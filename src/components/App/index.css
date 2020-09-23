@@ -39,6 +39,10 @@ html {
   border-radius: 99999px;
 }
 
+footer {
+  display: none;
+}
+
 @media only screen and (min-width: 40em) {
   html {
     overflow: hidden;
@@ -73,5 +77,15 @@ html {
     flex-grow: 2;
     flex-shrink: 1;
     box-sizing: border-box;
+  }
+}
+
+@media only screen and (min-width: 57em) {
+  .flexNavigation {
+    width: 20vw;
+  }
+
+  footer {
+    display: inherit;
   }
 }

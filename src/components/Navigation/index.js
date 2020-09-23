@@ -32,17 +32,17 @@ class NavigationAuth extends Component {
         <ul className={styles.authNav}>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.LANDING} id="landingMainNav">news</Link>
+                <Link to={ROUTES.LANDING} id={styles.landingMainNav}>news</Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.HOME} id="homeMainNav">home3</Link>
+                <Link to={ROUTES.HOME} id={styles.homeMainNav}>home3</Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.ACCOUNT} id="userMainNav">user</Link>
+                <Link to={ROUTES.ACCOUNT} id={styles.userMainNav}>user</Link>
               </span>
             </li>
             {authUser.roles[ROLES.ADMIN] && (
