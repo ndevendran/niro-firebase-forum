@@ -64,6 +64,42 @@
   }
 }
 
+@media only screen and (min-width: 1265px) {
+  #landingMainNav::after {
+    content: 'Landing';
+    font-family: sans-serif;
+  }
+
+  #homeMainNav::after {
+    content: 'Home';
+    font-family: sans-serif;
+  }
+
+  #userMainNav::after {
+    content: 'Profile';
+    font-family: sans-serif;
+  }
+
+  #listMainNav::after {
+    content: 'Lists';
+    font-family: sans-serif;
+  }
+
+  #messagesMainNav::after {
+    content: 'Messages';
+    font-family: sans-serif;
+  }
+
+  #bookmarksMainNav::after {
+    content: 'Bookmarks';
+    font-family: sans-serif;
+  }
+
+  .navItem {
+    text-align: left;
+  }
+}
+
 /* @media only screen and (min-width: 57em) {
   .authNav {
     width: 20vw;

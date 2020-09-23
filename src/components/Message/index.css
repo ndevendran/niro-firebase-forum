@@ -41,6 +41,7 @@
 
 .createContainer {
   display: none;
+  max-width: 600px;
 }
 
 .createBody {
