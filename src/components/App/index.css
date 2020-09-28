@@ -95,7 +95,6 @@ aside {
     flex-direction: column-reverse;
     align-items: flex-end;
     justify-content: flex-end;
-    height: 100vh;
   }
 
   .toggleCreate {
