@@ -85,11 +85,11 @@ class MessageBase extends Component {
             <AuthUserContext.Consumer>
             {authUser => (
                 <div>
-                <CreateMessage
-                  authUser={authUser}
-                />
+                    <div className={styles.createContainer}>
+                      <CreateMessage authUser={authUser} />
+                    </div>
                     {!loading && messages && (
-                        <Button onClick={this.onNextPage}>
+                        <Button onClick={this.onNextPage} className={styles.MoreButton}>
                             More
                         </Button>
                     )}
@@ -105,7 +105,6 @@ class MessageBase extends Component {
                     )}
                 </div>
             )}
-
             </AuthUserContext.Consumer>
             </>
         );
@@ -113,6 +112,7 @@ class MessageBase extends Component {
 }
 
 
+export { CreateMessage };
 
 const Messages = withFirebase(MessageBase);
 

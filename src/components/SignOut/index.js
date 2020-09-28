@@ -7,7 +7,7 @@ import { withFirebase } from '../Firebase';
 const SignOutButton = ({ firebase }) =>
 (
     <ButtonPop type="button" onClick={firebase.doSignOut}>
-        Sign Out
+        signout
     </ButtonPop>
 );
 

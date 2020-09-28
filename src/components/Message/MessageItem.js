@@ -40,8 +40,8 @@ class MessageItem extends Component {
         const { editMode, editText } = this.state;
 
         return (
-            <li className={styles.messageContent}>
-              <div>
+            <li className={styles.container}>
+              <div className={styles.avatarContainer}>
                 <Profile />
               </div>
               <div className={styles.messageContainer}>

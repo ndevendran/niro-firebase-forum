@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import Profile from '../Profile';
-import styles from './create_message.css';
+import styles from './index.css';
 import { ButtonFlat } from '../../components/Button';
 import { withFirebase } from '../Firebase';
+import { withAuthentication } from '../Session';
 
 class CreateMessage extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       text: '',
+      showCreateMessage: false,
     };
   }
 
@@ -30,26 +31,29 @@ class CreateMessage extends Component {
       this.setState({ text: event.target.value });
   }
 
+
   render() {
     return (
-      <div className={styles.createMessageContainer}>
-        <Profile />
-        <form className={styles.createMessage} onSubmit={this.onCreateMessage}>
-          <div className={styles.body}>
-            <textarea
-                rows="6"
-                cols="40"
-                type="text"
-                value={this.state.text}
-                onChange={this.onChangeText}
-            />
+        <div className={styles.container} ref='createMessage'>
+          <div className={styles.avatarContainer}>
+            <Profile />
           </div>
-          <div className={styles.footer}>
-            <div className={styles.formatMessage}>Format Placeholder</div>
-            <ButtonFlat className={styles.sendMessageBtn} type="submit">Send</ButtonFlat>
+          <div className={styles.messageContainer}>
+            <form onSubmit={this.onCreateMessage}>
+                <textarea
+                    rows="6"
+                    cols="40"
+                    type="text"
+                    value={this.state.text}
+                    onChange={this.onChangeText}
+                />
+              <div className={styles.createFooter}>
+                <div>Format Placeholder</div>
+                <ButtonFlat type="submit">Send</ButtonFlat>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+        </div>
     );
   }
 }

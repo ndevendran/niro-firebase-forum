@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthUserContext } from '../Session';
 import TrapezoidTabs from './TrapezoidTabs.js';
@@ -19,20 +19,58 @@ const Navigation = () => (
     </div>
 );
 
-const NavigationAuth = ({ authUser }) => (
-        <ul className={styles.navigation}>
-            <TrapezoidTabs link={ROUTES.LANDING}>Landing</TrapezoidTabs>
-            <TrapezoidTabs link={ROUTES.HOME}>Home</TrapezoidTabs>
-            <TrapezoidTabs link={ROUTES.ACCOUNT}>Account</TrapezoidTabs>
-            {authUser.roles[ROLES.ADMIN] && (
-                <TrapezoidTabs link={ROUTES.ADMIN}>Admin</TrapezoidTabs>
-            )}
+class NavigationAuth extends Component {
+  constructor(props) {
+    super(props);
 
-            <li>
+  }
+
+  render() {
+    const authUser = this.props.authUser;
+    return (
+      <>
+        <ul className={styles.authNav}>
+            <li className={styles.navItem}>
+              <span>
+                <Link to={ROUTES.LANDING} id={styles.landingMainNav}>news</Link>
+              </span>
+            </li>
+            <li className={styles.navItem}>
+              <span>
+                <Link to={ROUTES.HOME} id={styles.homeMainNav}>home3</Link>
+              </span>
+            </li>
+            <li className={styles.navItem}>
+              <span>
+                <Link to={ROUTES.ACCOUNT} id={styles.userMainNav}>user</Link>
+              </span>
+            </li>
+            {authUser.roles[ROLES.ADMIN] && (
+              <li className={styles.navItem}>
+                <span>
+                  <Link to={ROUTES.ADMIN} id="adminMainNav">Admin</Link>
+                </span>
+              </li>
+            )}
+            <li className={styles.navItem} id={styles.listMainNav}>
+              <span>list</span>
+            </li>
+            <li className={styles.navItem} id={styles.messagesMainNav}>
+              <span>envelop</span>
+            </li>
+            <li className={styles.navItem} id={styles.bookmarksMainNav}>
+              <span>bookmark</span>
+            </li>
+            <li className={styles.navItem}>
                 <SignOutButton />
             </li>
+
         </ul>
-);
+      </>
+    );
+  }
+}
+
 
 const NavigationNonAuth = () => (
         <ul>
@@ -49,20 +87,20 @@ const NavigationNonAuth = () => (
 );
 
 export const NavigationAccount = () => (
-  <ul className={styles.profileNav}>
+  <ul>
     <li>
-      <span className={styles.menuItem}>
-        <Link className={styles.navLink} to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
+      <span>
+        <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password</Link>
       </span>
     </li>
     <li>
-      <span className={styles.menuItem}>
-        <Link className={styles.navLink} to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
+      <span>
+        <Link to={ROUTES.PASSWORD_CHANGE}>Change Password</Link>
       </span>
     </li>
     <li>
-      <span className={styles.menuItem}>
-        <Link className={styles.navLink} to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
+      <span>
+        <Link to={ROUTES.SIGN_IN_METHODS}>Sign In Methods</Link>
       </span>
     </li>
   </ul>

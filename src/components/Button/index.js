@@ -12,7 +12,7 @@ class Button extends Component {
 
     render() {
         return(
-            <button className={styles.btn_standard}
+            <button
                 type="button" onClick={this.props.onClick}>
                 {this.props.children}
             </button>
@@ -22,7 +22,7 @@ class Button extends Component {
 
 export const ButtonFlat = ({ onClick, children,type }) => {
   return (
-    <button className={styles.btn_flat}
+    <button
       type={type ? type : "button" }
       onClick={onClick}
     >
@@ -33,12 +33,12 @@ export const ButtonFlat = ({ onClick, children,type }) => {
 
 export const ButtonPop = ({ onClick, children,type }) => {
   return (
-    <div className={styles.btn_pop}
+    <button
       type={type ? type : "button" }
       onClick={onClick}
     >
       {children}
-    </div>
+    </button>
   );
 }
 

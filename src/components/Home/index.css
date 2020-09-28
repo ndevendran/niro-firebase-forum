@@ -1,23 +1,3 @@
-.pageContainer {
-  /* margin: auto 25%; */
-  display: grid;
-  grid-template-columns: [nav-start] 20vw [content-start] 60vw [main-end] 20vw;
-  /* grid-template-rows: [main-start] 300px; */
-  padding-bottom: 10em;
-}
-
-.contentContainer {
-  grid-column-start: content-start;
-  /* grid-row-start: main-start; */
-}
-
 h1 {
-  background: white;
-  color: black;
-  height: 1.5em;
-  width: 47rem;
-  text-align: center;
-  border: 1px solid rgba(221,221,221,0.15);
-  box-shadow: 0 0.03rem 0.1rem 0 rgba(0,0,0,0.2);
-  box-sizing: border-box;
+  height: 2.5vh;
 }

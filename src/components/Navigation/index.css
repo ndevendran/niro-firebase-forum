@@ -1,120 +1,126 @@
-.navigation > li {
-  font-size: 19px;
-  font-weight: bold;
-  line-height: 1.31;
-  color: #e1e1e1;
-  position: relative;
-  margin-left: 1em;
-  margin-right: 1em;
+.navItem {
+  font-family: 'IcoMoon' !important;
+  font-size: 20px;
+  speak: none;
+  border: 1px solid #666;
+  background-color: #eee;
+  padding: 10px 1%;
+  margin: 3px 0 0;
+  /* text-transform: uppercase; */
+  text-align: center;
   box-sizing: border-box;
-  padding-bottom: .25em;
+  width: 25%;
+  height: 100%;
+  cursor: pointer;
 }
 
-.navigation {
+.navItem a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: black;
+}
+
+.authNav {
   display: flex;
-  align-items: center;
-  background-color: rgba(0,0,0,0.6);
-  width: 100%;
-  justify-content: flex-start;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-}
-
-.menuItem {
-  color: inherit;
-  text-transform: uppercase;
-	background-size: 1em 2.5em;
-}
-
-.navLink::after {
-  content: "";
-  border-radius: 100px;
-  width: 0;
-  height: auto;
-  background: #e1e1e1;
-  display: block;
-  padding-top: 5px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  opacity: 0;
-  transition: all .4s ease;
-}
-
-.navLink::before {
-  content: "";
-  border-radius: 100px;
-  width: 0;
-  height: auto;
-  background: #e1e1e1;
-  display: block;
-  padding-top: 5px;
-  position: absolute;
-  bottom: 0;
-  right: 49%;
-  opacity: 0;
-  transition: all .4s ease;
-}
-
-.navLink:hover:after {
+  list-style-type: none;
   width: 100%;
-  left: 0;
-  opacity: 1;
+  height: 100%;
 }
 
-.navLink:hover:before {
-  width: 100%;
-  right: 0;
-  opacity: 1;
+#listMainNav {
+  display: none;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+#bookmarksMainNav {
+  display: none;
 }
 
-header, header>div>ul {
-    background-color: white;
-    box-shadow: 0 0.03rem 0.1rem 0 rgba(0,0,0,0.2);
-    border: 1px solid rgba(221,221,221,0.15);
-    box-sizing: border-box;
-    width: 50vw;
-    left: 0;
-    top: 0;
-    right: 0;
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    height: 48px;
-    z-index: 36;
+#messagesMainNav {
+  display: none;
 }
 
-.profileNav {
-  display: flex;
-  align-items: center;
-  background-color: black;
-  width: 100%;
-  justify-content: space-around;
-  flex-direction: column;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
+@media only screen and (min-width: 40em) {
+  .authNav {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .navItem {
+    width: 100%;
+  }
+
+  #listMainNav {
+    display: block;
+  }
+
+  #bookmarksMainNav {
+    display: block;
+  }
+
+  #messagesMainNav {
+    display: block;
+  }
 }
 
-.profileNav > li {
-  font-size: 19px;
-  font-weight: bold;
-  line-height: 1.31;
-  color: #e1e1e1;
-  position: relative;
-  margin-left: 1em;
-  margin-right: 1em;
-  box-sizing: border-box;
-  padding-bottom: .25em;
+@media only screen and (min-width: 1265px) {
+  #landingMainNav::after {
+    content: 'Landing';
+    font-family: sans-serif;
+  }
+
+  #homeMainNav::after {
+    content: 'Home';
+    font-family: sans-serif;
+  }
+
+  #userMainNav::after {
+    content: 'Profile';
+    font-family: sans-serif;
+  }
+
+  #listMainNav::after {
+    content: 'Lists';
+    font-family: sans-serif;
+  }
+
+  #messagesMainNav::after {
+    content: 'Messages';
+    font-family: sans-serif;
+  }
+
+  #bookmarksMainNav::after {
+    content: 'Bookmarks';
+    font-family: sans-serif;
+  }
+
+  .navItem {
+    text-align: left;
+  }
 }
+
+/* @media only screen and (min-width: 57em) {
+  .authNav {
+    width: 20vw;
+  }
+
+  .navItem {
+    width: 100%;
+  }
+
+  #landingMainNav::after {
+    font-family: sans-serif;
+    content: 'Landing';
+  }
+
+  #userMainNav::after {
+    font-family: sans-serif;
+    content: 'User';
+  }
+
+  #homeMainNav::after {
+    font-family: sans-serif;
+    content: 'Home';
+  }
+} */
