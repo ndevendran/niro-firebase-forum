@@ -7,13 +7,24 @@
 }
 
 .promoContainer {
+  /* layout */
   border: 1px solid black;
   border-radius: 5px;
   margin-top: 20px;
   height: 100%;
+
+  /* style */
+  background-color: #FF570A;
+  color: #FFFFFF;
+}
+
+.promoTitle {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .componentContainer {
+  /* layout */
   padding-left: 10px;
   box-sizing: border-box;
   height: 80vh;

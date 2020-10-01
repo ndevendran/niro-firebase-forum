@@ -1,5 +1,6 @@
 html {
   font: 100% system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  background-color: #420039;
 }
 
 @font-face {
@@ -22,32 +23,23 @@ html {
 }
 
 .toggleCreate {
-  font-family: 'IcoMoon' !important;
+  /* layout */
   display: flex;
   justify-content: center;
   align-self: flex-end;
-  border: 1px solid black;
-  color: white;
-  background: black;
   padding-top: 10px;
   font-size: 32px;
   box-sizing: border-box;
   height: 59px;
   width: 59px;
   border-radius: 100%;
-}
 
-.toggleCreate {
-  border: 1px solid black;
+  /* style */
+  border: 1px solid white;
   color: white;
-  background: black;
-  padding-top: 10px;
-  font-size: 32px;
-  box-sizing: border-box;
-  text-align: center;
-  height: 59px;
-  width: 59px;
-  border-radius: 99999px;
+  background-color: #D72638;
+  font-family: 'IcoMoon' !important;
+
 }
 
 .createMessageLightbox {
