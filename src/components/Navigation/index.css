@@ -10,9 +10,6 @@
   cursor: pointer;
 
   /* style */
-  font-family: 'IcoMoon' !important;
-  font-size: 20px;
-  speak: none;
   border: 1px solid #666;
   color: #FFFFFF;
 }
@@ -33,6 +30,12 @@
 
   /* styles */
   background-color: #D72638;
+}
+
+.icon {
+  font-family: 'IcoMoon' !important;
+  font-size: 20px;
+  speak: none;
 }
 
 #listMainNav {
@@ -56,6 +59,7 @@
 
   .navItem {
     width: 100%;
+    border: none;
   }
 
   #listMainNav {
