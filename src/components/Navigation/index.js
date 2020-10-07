@@ -32,20 +32,23 @@ class NavigationAuth extends Component {
         <ul className={styles.authNav}>
             <li className={styles.navItem}>
               <span>
-                <span className={styles.icon}>news</span>
-                <Link to={ROUTES.LANDING} id={styles.landingMainNav}></Link>
+                <Link to={ROUTES.LANDING} id={styles.landingMainNav}>
+                  <span className={styles.icon}>news</span>
+                </Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <span className={styles.icon}>home3</span>
-                <Link to={ROUTES.HOME} id={styles.homeMainNav}></Link>
+                <Link to={ROUTES.HOME} id={styles.homeMainNav}>
+                  <span className={styles.icon}>home3</span>
+                </Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <span className={styles.icon}>user</span>
-                <Link to={ROUTES.ACCOUNT} id={styles.userMainNav}></Link>
+                <Link to={ROUTES.ACCOUNT} id={styles.userMainNav}>
+                  <span className={styles.icon}>user</span>
+                </Link>
               </span>
             </li>
             {authUser.roles[ROLES.ADMIN] && (

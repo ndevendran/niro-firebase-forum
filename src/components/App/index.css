@@ -3,6 +3,12 @@ html {
   background-color: hsl(210, 10%, 21%);
 }
 
+h1 {
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
 @font-face {
   font-family: 'IcoMoon';
   src: url('../../fonts/IcoMoon-Free.ttf') format('truetype');
