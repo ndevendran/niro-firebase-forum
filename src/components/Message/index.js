@@ -81,7 +81,7 @@ class MessageBase extends Component {
         const { text, messages, loading } = this.state;
 
         return (
-            <>
+            <div className={styles.messagesScrollContainer}>
             <AuthUserContext.Consumer>
             {authUser => (
                 <div>
@@ -106,7 +106,7 @@ class MessageBase extends Component {
                 </div>
             )}
             </AuthUserContext.Consumer>
-            </>
+            </div>
         );
     }
 }
