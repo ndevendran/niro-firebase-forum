@@ -1,6 +1,9 @@
 .searchIcon {
   font-family: 'IcoMoon';
+  color: white;
+  cursor: pointer;
 }
+
 
 .searchInput {
   display: flex;
