@@ -87,6 +87,8 @@ aside {
     flex-direction: column-reverse;
     align-items: flex-end;
     justify-content: flex-end;
+    background-color: hsl(350, 75%, 50%);
+    height: 100%;
   }
 
   .toggleCreate {
@@ -95,8 +97,9 @@ aside {
 
   header {
     flex-basis: auto;
-    flex-grow: 1;
+    flex-grow: .25;
     flex-shrink: 0;
+    max-width: 300px;
   }
 
   main {
@@ -106,10 +109,6 @@ aside {
     flex-grow: 2;
     box-sizing: border-box;
     padding-left: 10px;
-  }
-
-  .innerNav {
-    height: 35%;
   }
 
   .innerNav div {
