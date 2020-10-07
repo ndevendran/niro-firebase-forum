@@ -5,8 +5,15 @@
   padding-bottom: .3em;
   padding-left: 3%;
   margin-bottom: .5em;
-  border: 1px solid hsla(210, 50%, 75%, .2);
+  /* border: 1px solid hsla(210, 50%, 75%, .2); */
+  border-bottom: .5px solid hsla(0, 50%, 100%, .5);
   color: #FFFFFF;
+}
+
+.icon {
+  font-family: 'IcoMoon' !important;
+  font-size: 20px;
+  speak: none;
 }
 
 .avatarContainer {
@@ -14,7 +21,6 @@
   flex-grow:0;
   flex-shrink:0;
   min-height:150px;
-  background-color: #420039;
   z-index: 0;
 }
 
