@@ -89,8 +89,8 @@
 }
 
 @media only screen and (min-width: 40em) {
-  .messageList {
-    height: 75vh;
+  .messagesScrollContainer {
+    height: 98vh;
   }
 
   .createContainer {
