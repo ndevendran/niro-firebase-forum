@@ -42,14 +42,16 @@ class CreateMessage extends Component {
             <form onSubmit={this.onCreateMessage}>
                 <textarea
                     rows="6"
-                    cols="40"
+                    cols="60"
                     type="text"
                     value={this.state.text}
                     onChange={this.onChangeText}
                 />
               <div className={styles.createFooter}>
                 <div>Format Placeholder</div>
-                <ButtonFlat type="submit">Send</ButtonFlat>
+                <div className={styles.sendButton}>
+                  <ButtonFlat type="submit">Send</ButtonFlat>
+                </div>
               </div>
             </form>
           </div>

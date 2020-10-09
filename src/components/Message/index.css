@@ -53,6 +53,11 @@
 
 /* Create Message Styles */
 
+.sendButton {
+  height: 40px;
+  length: 60px;
+  align-self: flex-end;
+}
 .createContainer {
   display: none;
   /* max-width: 600px; */
@@ -78,6 +83,7 @@
 
 .createFooter {
   display: flex;
+  justify-content: space-between;
 }
 
 /* Container Styles */
@@ -93,6 +99,11 @@
   overflow-y: scroll;
   width: 100%;
   height: 100%;
+}
+
+.MoreButton {
+  height: 30px;
+  width: 100px;
 }
 
 /* Media Queries */

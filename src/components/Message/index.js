@@ -4,7 +4,7 @@ import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import CreateMessage from './CreateMessage.js';
 import { AuthUserContext } from '../Session';
-import Button from '../Button';
+import Button, { ButtonFlat } from '../Button';
 import styles from './index.css';
 
 class MessageBase extends Component {
@@ -89,9 +89,11 @@ class MessageBase extends Component {
                       <CreateMessage authUser={authUser} />
                     </div>
                     {!loading && messages && (
-                        <Button onClick={this.onNextPage} className={styles.MoreButton}>
-                            More
-                        </Button>
+                        <div className={styles.MoreButton}>
+                          <ButtonFlat onClick={this.onNextPage}>
+                              More
+                          </ButtonFlat>
+                        </div>
                     )}
                     {loading && <div> Loading...</div>}
                     {messages ? (
