@@ -6,11 +6,11 @@ import {
 import { compose } from 'recompose';
 import Profile from '../Profile';
 import Messages from '../Message';
-import './index.css';
+import styles from './index.css';
 
 const HomePage = () => (
     <div>
-        <div>
+        <div className={styles.homeContainer}>
           <h1>Home Page</h1>
           <Messages />
         </div>

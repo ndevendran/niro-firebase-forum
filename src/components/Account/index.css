@@ -8,6 +8,11 @@
   flex-direction: column;
   grid-row-start: main-start;
   grid-column-start: nav-start;
+  color: inherit;
+}
+
+.accountNavigation > ul > li > span > a {
+  color: inherit;
 }
 
 .accountMain {

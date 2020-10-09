@@ -29,6 +29,7 @@
   padding-left: 1em;
   padding-right: 1em;
   flex-basis:60%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,7 +49,9 @@
 
 .createContainer {
   display: none;
-  max-width: 600px;
+  /* max-width: 600px; */
+  width: 100%;
+  height: 15%;
 }
 
 .lightbox {
@@ -81,12 +84,15 @@
 }
 
 .messageList {
-  max-width: 600px;
-  height: 85vh;
+  /* max-width: 600px; */
+  width: 100%;
+  height: 85%;
 }
 
 .messagesScrollContainer {
   overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 
 @media only screen and (min-width: 40em) {
