@@ -30,6 +30,7 @@ h1 {
   left: 0;
   width: 100%;
   z-index: 1;
+  height: 20vh;
 }
 
 .toggleCreate {
@@ -50,6 +51,10 @@ h1 {
   background-color: #D72638;
   font-family: 'IcoMoon' !important;
 
+}
+
+.mainContentContainer {
+  width: 100%;
 }
 
 .createMessageLightbox {
@@ -76,13 +81,18 @@ aside {
 }
 
 main {
-  height: 95vh;
-  max-width: 60%;
+  height: 85vh;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media only screen and (min-width: 40em) {
   html {
     overflow: hidden;
+  }
+
+  main {
+    height: 95vh;
   }
 
   .fullPage {
@@ -112,9 +122,9 @@ main {
 
   header {
     flex-basis: auto;
-    flex-grow: .25;
+    flex-grow: 1;
     flex-shrink: 0;
-    max-width: 300px;
+    max-width: 25%;
   }
 
   main {
@@ -135,8 +145,17 @@ main {
   /* .flexNavigation {
     width: 20vw;
   } */
+  main {
+    max-width: 80%;
+    height: 95vh;
+  }
 
   aside {
     display: inherit;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 40%;
+    box-sizing: border-box;
   }
 }
