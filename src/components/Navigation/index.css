@@ -52,7 +52,7 @@
 @media only screen and (min-width: 40em) {
   .authNav {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 100%;
   }
 
@@ -105,9 +105,9 @@
     font-family: sans-serif;
   }
 
-  .navItem {
+  /* .navItem {
     text-align: left;
-  }
+  } */
 }
 
 /* @media only screen and (min-width: 57em) {

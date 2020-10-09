@@ -39,10 +39,8 @@ class App extends Component {
           <div className={styles.fullPage}>
               <header>
                 <div className={styles.flexNavigation}>
-                  <div className={styles.toggleCreateContainer}>
-                    <div className={styles.toggleCreate} onClick={this.onToggleCreateLightbox}>
-                        power
-                    </div>
+                  <div className={styles.toggleCreate} onClick={this.onToggleCreateLightbox}>
+                      power
                   </div>
                   <div className={styles.innerNav}>
                     <Navigation />
