@@ -18,10 +18,18 @@ const MessagePresentation = ({ message,
       <div className={styles.messageFunctions}>
         <div>
           <span>
-            <span className={styles.icon} onClick={onLikeMessage}>
-              heart
-            </span>
-            {message.likes}
+            {(message.likes && message.likes.members && message.likes.members[authUser.uid])
+              || (message.userId === authUser.uid)
+                ? (
+                <span className={styles.icon} onClick={onLikeMessage}>
+                  heart
+                </span>
+              ) : (
+                <span className={styles.icon} onClick={onLikeMessage}>
+                  heart-broken
+                </span>
+            )}
+            {message.likes && message.likes.count}
           </span>
         </div>
         <div></div>

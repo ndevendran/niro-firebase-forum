@@ -14,7 +14,6 @@ class MessageBase extends Component {
         this.state = {
             loading: false,
             messages: [],
-            likes: [],
             text: '',
             limit: 5,
         };
@@ -22,7 +21,6 @@ class MessageBase extends Component {
 
     componentDidMount() {
         this.onListenForMessages();
-        this.onListenForLikes();
     }
 
     onListenForMessages() {
@@ -53,28 +51,6 @@ class MessageBase extends Component {
         });
     }
 
-    onListenForLikes() {
-      this.props.firebase
-      .likes()
-      .on('value', snapshot => {
-        const likesObject = snapshot.val();
-
-        if(likesObject) {
-          const likesList = Object.keys(likesObject).map(
-            key => ({
-              uid: key,
-              ...likesObject[key],
-            }));
-
-          this.setState({
-            likes: likesList,
-          });
-        } else {
-          this.setState({ likes: null, });
-        }
-      });
-    }
-
     onNextPage = () => {
         this.setState(
         state => ({ limit: state.limit + 5 }),
@@ -102,73 +78,42 @@ class MessageBase extends Component {
     };
 
     onLikeMessage = (message, user) => {
-      let like;
-      const { uid, ...messageSnapshot } = message;
-      if(this.state.likes) {
-        const singleLikeInList = this.state.likes.filter(potentialLike => {
-          if(potentialLike.messageId === uid){
-            return true;
-          }
-
-          return false;
-        });
-
-        like = singleLikeInList[0];
+      if(message.userId === user.uid){
+        return;
       }
 
-      if(!like) {
-        const memberList = {};
-        memberList[user.uid] = true;
-        this.props.firebase.likes().push({
-          messageId: message.uid,
-          members: memberList,
-        });
 
-        this.props.firebase.message(uid).set({
-          uid: uid,
-          ...messageSnapshot,
-          likes: 1,
-        });
-      } else {
-        let userLikedPost = false;
-        for(const member in like.members) {
-          if (member===user.uid) {
-              userLikedPost = true;
-          }
+      let likes;
+      if(!message.likes){
+        likes = {};
+        likes.members = {};
+        likes.members[user.uid] = true;
+        likes.count = 1;
+
+        message.likes = likes;
+      } else if(message.likes && (!message.likes.members || !message.likes.members[user.uid])){
+        likes = message.likes;
+        if(!likes.members) {
+          likes.members = {};
         }
-
-        if(userLikedPost) {
-          delete like.members[user.uid];
-          this.props.firebase.message(uid).set({
-            uid: uid,
-            ...messageSnapshot,
-            likes: messageSnapshot.likes - 1
-          });
-
-          this.props.firebase.like(like.uid).set({
-            ...like,
-            members: like.members,
-          });
-        } else {
-          let newMemberList;
-          if(like.members) {
-            newMemberList = like.members;
-          } else {
-            newMemberList = {};
-          }
-
-          const likeCount = messageSnapshot.likes;
-          newMemberList[user.uid] = true;
-          this.props.firebase.message(uid).set({
-            ...messageSnapshot,
-            likes: messageSnapshot.likes + 1
-          })
-          this.props.firebase.like(like.uid).set({
-            ...like,
-            members: newMemberList,
-          });
-        }
+        likes.members[user.uid] = true;
+        likes.count = likes.count + 1;
+        message.likes = likes;
+      } else if(message.likes && message.likes.members[user.uid]){
+        likes = message.likes;
+        delete likes.members[user.uid];
+        likes.count = likes.count - 1;
+        if(likes.count === 0)
+          message.likes = null;
+        else
+          message.likes = likes;
       }
+
+      this.props.firebase.message(message.uid).set({
+        ...message
+      });
+
+      return message;
     }
 
     render() {
