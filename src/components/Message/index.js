@@ -102,14 +102,11 @@ class MessageBase extends Component {
     };
 
     onLikeMessage = (message, user) => {
-      console.log("Liking post...");
       let like;
       const { uid, ...messageSnapshot } = message;
       if(this.state.likes) {
         const singleLikeInList = this.state.likes.filter(potentialLike => {
-          console.log(potentialLike);
           if(potentialLike.messageId === uid){
-            console.log("found one...");
             return true;
           }
 
@@ -118,8 +115,6 @@ class MessageBase extends Component {
 
         like = singleLikeInList[0];
       }
-
-      console.log(like);
 
       if(!like) {
         const memberList = {};
@@ -142,8 +137,6 @@ class MessageBase extends Component {
           }
         }
 
-        console.log(like);
-
         if(userLikedPost) {
           delete like.members[user.uid];
           this.props.firebase.message(uid).set({
@@ -165,7 +158,6 @@ class MessageBase extends Component {
           }
 
           const likeCount = messageSnapshot.likes;
-          console.log(likeCount);
           newMemberList[user.uid] = true;
           this.props.firebase.message(uid).set({
             ...messageSnapshot,
