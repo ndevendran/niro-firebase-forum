@@ -20,6 +20,7 @@ class CreateMessage extends Component {
           text: this.state.text,
           userId: this.props.authUser.uid,
           createdAt: this.props.firebase.serverValue.TIMESTAMP,
+          likes: 0,
       });
 
       this.setState({ text: '' });

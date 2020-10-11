@@ -35,6 +35,10 @@ class MessageItem extends Component {
       this.props.onRemoveMessage(this.props.message.uid);
     }
 
+    onLikeMessage = () => {
+      this.props.onLikeMessage(this.props.message, this.props.authUser);
+    }
+
     render() {
         const { authUser, message, onRemoveMessage } = this.props;
         const { editMode, editText } = this.state;
@@ -55,6 +59,7 @@ class MessageItem extends Component {
                 <MessagePresentation
                   message={message} onRemoveMessage={this.onRemoveMessage}
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
+                  onLikeMessage={this.onLikeMessage}
                 />
               )}
               </div>

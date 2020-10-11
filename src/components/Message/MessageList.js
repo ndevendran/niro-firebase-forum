@@ -4,7 +4,7 @@ import styles from './index.css';
 
 const MessageList = ({
     messages, onRemoveMessage,
-    onEditMessage, authUser }) => (
+    onEditMessage, onLikeMessage, authUser }) => (
     <ul className={styles.messageList}>
         {messages.map(message => (
             <MessageItem
@@ -12,6 +12,7 @@ const MessageList = ({
                 message={message}
                 onRemoveMessage={onRemoveMessage}
                 onEditMessage={onEditMessage}
+                onLikeMessage={onLikeMessage}
                 authUser={authUser}
             />
         ))}

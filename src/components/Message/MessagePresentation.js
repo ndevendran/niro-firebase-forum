@@ -18,7 +18,10 @@ const MessagePresentation = ({ message,
       <div className={styles.messageFunctions}>
         <div>
           <span>
-            <span className={styles.icon}>heart</span>
+            <span className={styles.icon} onClick={onLikeMessage}>
+              heart
+            </span>
+            {message.likes}
           </span>
         </div>
         <div></div>

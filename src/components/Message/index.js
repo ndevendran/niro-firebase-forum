@@ -14,6 +14,7 @@ class MessageBase extends Component {
         this.state = {
             loading: false,
             messages: [],
+            likes: [],
             text: '',
             limit: 5,
         };
@@ -21,6 +22,7 @@ class MessageBase extends Component {
 
     componentDidMount() {
         this.onListenForMessages();
+        this.onListenForLikes();
     }
 
     onListenForMessages() {
@@ -51,6 +53,28 @@ class MessageBase extends Component {
         });
     }
 
+    onListenForLikes() {
+      this.props.firebase
+      .likes()
+      .on('value', snapshot => {
+        const likesObject = snapshot.val();
+
+        if(likesObject) {
+          const likesList = Object.keys(likesObject).map(
+            key => ({
+              uid: key,
+              ...likesObject[key],
+            }));
+
+          this.setState({
+            likes: likesList,
+          });
+        } else {
+          this.setState({ likes: null, });
+        }
+      });
+    }
+
     onNextPage = () => {
         this.setState(
         state => ({ limit: state.limit + 5 }),
@@ -77,6 +101,84 @@ class MessageBase extends Component {
         });
     };
 
+    onLikeMessage = (message, user) => {
+      console.log("Liking post...");
+      let like;
+      const { uid, ...messageSnapshot } = message;
+      if(this.state.likes) {
+        const singleLikeInList = this.state.likes.filter(potentialLike => {
+          console.log(potentialLike);
+          if(potentialLike.messageId === uid){
+            console.log("found one...");
+            return true;
+          }
+
+          return false;
+        });
+
+        like = singleLikeInList[0];
+      }
+
+      console.log(like);
+
+      if(!like) {
+        const memberList = {};
+        memberList[user.uid] = true;
+        this.props.firebase.likes().push({
+          messageId: message.uid,
+          members: memberList,
+        });
+
+        this.props.firebase.message(uid).set({
+          uid: uid,
+          ...messageSnapshot,
+          likes: 1,
+        });
+      } else {
+        let userLikedPost = false;
+        for(const member in like.members) {
+          if (member===user.uid) {
+              userLikedPost = true;
+          }
+        }
+
+        console.log(like);
+
+        if(userLikedPost) {
+          delete like.members[user.uid];
+          this.props.firebase.message(uid).set({
+            uid: uid,
+            ...messageSnapshot,
+            likes: messageSnapshot.likes - 1
+          });
+
+          this.props.firebase.like(like.uid).set({
+            ...like,
+            members: like.members,
+          });
+        } else {
+          let newMemberList;
+          if(like.members) {
+            newMemberList = like.members;
+          } else {
+            newMemberList = {};
+          }
+
+          const likeCount = messageSnapshot.likes;
+          console.log(likeCount);
+          newMemberList[user.uid] = true;
+          this.props.firebase.message(uid).set({
+            ...messageSnapshot,
+            likes: messageSnapshot.likes + 1
+          })
+          this.props.firebase.like(like.uid).set({
+            ...like,
+            members: newMemberList,
+          });
+        }
+      }
+    }
+
     render() {
         const { text, messages, loading } = this.state;
 
@@ -101,6 +203,7 @@ class MessageBase extends Component {
                             onRemoveMessage={this.onRemoveMessage}
                             onEditMessage={this.onEditMessage}
                             authUser={authUser}
+                            onLikeMessage={this.onLikeMessage}
                         />
                     ) : (
                         <div>There are no messages...</div>
