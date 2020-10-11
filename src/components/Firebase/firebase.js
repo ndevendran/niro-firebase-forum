@@ -99,11 +99,6 @@ class Firebase {
   message = uid => this.db.ref(`messages/${uid}`);
 
   messages = () => this.db.ref('messages');
-
-  // *** Likes API ***
-  like = (messageId) => this.db.ref(`likes/${messageId}`);
-
-  likes = () => this.db.ref('likes');
 }
 
 export default Firebase;
