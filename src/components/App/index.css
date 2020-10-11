@@ -1,5 +1,21 @@
 html {
   font: 100% system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  background-color: hsl(210, 10%, 21%);
+  color: white;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+h1 {
+  color: inherit;
+  padding-bottom: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+  box-sizing: border-box;
+  height: 15vh;
 }
 
 @font-face {
@@ -19,35 +35,31 @@ html {
   left: 0;
   width: 100%;
   z-index: 1;
+  height: 20vh;
 }
 
 .toggleCreate {
-  font-family: 'IcoMoon' !important;
+  /* layout */
   display: flex;
   justify-content: center;
   align-self: flex-end;
-  border: 1px solid black;
-  color: white;
-  background: black;
   padding-top: 10px;
   font-size: 32px;
   box-sizing: border-box;
   height: 59px;
   width: 59px;
   border-radius: 100%;
+
+  /* style */
+  border: 1px solid white;
+  color: white;
+  background-color: #D72638;
+  font-family: 'IcoMoon' !important;
+
 }
 
-.toggleCreate {
-  border: 1px solid black;
-  color: white;
-  background: black;
-  padding-top: 10px;
-  font-size: 32px;
-  box-sizing: border-box;
-  text-align: center;
-  height: 59px;
-  width: 59px;
-  border-radius: 99999px;
+.mainContentContainer {
+  width: 100%;
 }
 
 .createMessageLightbox {
@@ -69,13 +81,27 @@ html {
   background: rgba(0,0,0,.8);
 }
 
+.fullPage {
+  height: 100%;
+}
+
 aside {
   display: none;
+}
+
+main {
+  height: 85vh;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media only screen and (min-width: 40em) {
   html {
     overflow: hidden;
+  }
+
+  main {
+    height: 95vh;
   }
 
   .fullPage {
@@ -85,6 +111,7 @@ aside {
 
   .innerNav {
     width: 100%;
+    height: 90%;
   }
 
   .flexNavigation {
@@ -95,16 +122,19 @@ aside {
     flex-direction: column-reverse;
     align-items: flex-end;
     justify-content: flex-end;
+    background-color: hsl(350, 75%, 50%);
+    height: 100%;
   }
 
   .toggleCreate {
-    align-self: flex-end;
+    align-self: center;
   }
 
   header {
     flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 0;
+    max-width: 25%;
   }
 
   main {
@@ -116,10 +146,6 @@ aside {
     padding-left: 10px;
   }
 
-  .innerNav {
-    height: 35%;
-  }
-
   .innerNav div {
     height: 100%;
   }
@@ -129,8 +155,17 @@ aside {
   /* .flexNavigation {
     width: 20vw;
   } */
+  main {
+    max-width: 80%;
+    height: 95vh;
+  }
 
   aside {
     display: inherit;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 40%;
+    box-sizing: border-box;
   }
 }

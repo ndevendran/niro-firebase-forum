@@ -38,7 +38,9 @@ const AccountPage = () => (
     <AuthUserContext.Consumer>
         {authUser => (
             <div className={styles.accountPage}>
-                <NavigationAccount className={styles.accountNavigation} />
+                <div className={styles.accountNavigation}>
+                  <NavigationAccount />
+                </div>
 
                 <div className={styles.accountMain}>
                   <h1>Account: {authUser.email}</h1>

@@ -32,36 +32,44 @@ class NavigationAuth extends Component {
         <ul className={styles.authNav}>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.LANDING} id={styles.landingMainNav}>news</Link>
+                <Link to={ROUTES.LANDING} id={styles.landingMainNav}>
+                  <span className={styles.icon}>news</span>
+                </Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.HOME} id={styles.homeMainNav}>home3</Link>
+                <Link to={ROUTES.HOME} id={styles.homeMainNav}>
+                  <span className={styles.icon}>home3</span>
+                </Link>
               </span>
             </li>
             <li className={styles.navItem}>
               <span>
-                <Link to={ROUTES.ACCOUNT} id={styles.userMainNav}>user</Link>
+                <Link to={ROUTES.ACCOUNT} id={styles.userMainNav}>
+                  <span className={styles.icon}>user</span>
+                </Link>
               </span>
             </li>
             {authUser.roles[ROLES.ADMIN] && (
               <li className={styles.navItem}>
                 <span>
+                  <span className={styles.icon}>admin</span>
                   <Link to={ROUTES.ADMIN} id="adminMainNav">Admin</Link>
                 </span>
               </li>
             )}
             <li className={styles.navItem} id={styles.listMainNav}>
-              <span>list</span>
+              <span className={styles.icon}>list</span>
             </li>
             <li className={styles.navItem} id={styles.messagesMainNav}>
-              <span>envelop</span>
+              <span className={styles.icon}>envelop</span>
             </li>
             <li className={styles.navItem} id={styles.bookmarksMainNav}>
-              <span>bookmark</span>
+              <span className={styles.icon}>bookmark</span>
             </li>
             <li className={styles.navItem}>
+                <span className={styles.icon}>signout</span>
                 <SignOutButton />
             </li>
 

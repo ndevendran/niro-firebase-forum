@@ -18,15 +18,19 @@ const MessagePresentation = ({ message,
       <div className={styles.messageFunctions}>
         <div>
           <span>
-            <SVGLike>Like</SVGLike>
+            <span className={styles.icon}>heart</span>
           </span>
         </div>
         <div></div>
         <div>
           {authUser.uid === message.userId && (
               <span>
-                <SVGDelete onClick={onRemoveMessage}>Delete</SVGDelete>
-                <SVGEdit onClick={onToggleEditMode}>Edit</SVGEdit>
+                <span className={styles.icon}
+                  onClick={onRemoveMessage}>bin
+                </span>
+                <span className={styles.icon}
+                  onClick={onToggleEditMode}>pencil
+                </span>
               </span>
           )}
         </div>

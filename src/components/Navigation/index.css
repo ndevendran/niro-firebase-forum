@@ -1,31 +1,40 @@
 .navItem {
-  font-family: 'IcoMoon' !important;
-  font-size: 20px;
-  speak: none;
-  border: 1px solid #666;
-  background-color: #eee;
+  /* layout */
   padding: 10px 1%;
   margin: 3px 0 0;
   /* text-transform: uppercase; */
   text-align: center;
   box-sizing: border-box;
   width: 25%;
-  height: 100%;
   cursor: pointer;
+
+  /* style */
+  border: 1px solid #666;
+  color: #FFFFFF;
 }
 
 .navItem a {
     text-decoration: none;
     font-size: 1.2em;
-    color: black;
+    color: inherit;
 }
 
 .authNav {
+  /* layout */
   display: flex;
   box-sizing: border-box;
   list-style-type: none;
   width: 100%;
   height: 100%;
+
+  /* styles */
+  background-color: hsl(350, 75%, 50%);
+}
+
+.icon {
+  font-family: 'IcoMoon' !important;
+  font-size: 20px;
+  speak: none;
 }
 
 #listMainNav {
@@ -43,12 +52,13 @@
 @media only screen and (min-width: 40em) {
   .authNav {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 100%;
   }
 
   .navItem {
     width: 100%;
+    border: none;
   }
 
   #listMainNav {
@@ -95,9 +105,9 @@
     font-family: sans-serif;
   }
 
-  .navItem {
+  /* .navItem {
     text-align: left;
-  }
+  } */
 }
 
 /* @media only screen and (min-width: 57em) {

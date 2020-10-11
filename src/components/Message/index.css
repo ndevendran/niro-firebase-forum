@@ -5,7 +5,15 @@
   padding-bottom: .3em;
   padding-left: 3%;
   margin-bottom: .5em;
-  border: 1px solid;
+  border-bottom: .5px solid hsla(0, 50%, 100%, .5);
+  color: inherit;
+}
+
+.icon {
+  font-family: 'IcoMoon' !important;
+  font-size: 20px;
+  speak: none;
+  cursor: pointer;
 }
 
 .avatarContainer {
@@ -13,15 +21,14 @@
   flex-grow:0;
   flex-shrink:0;
   min-height:150px;
-  background-color: white;
   z-index: 0;
-  background-color: white;
 }
 
 .messageContainer {
   padding-left: 1em;
   padding-right: 1em;
   flex-basis:60%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,14 +46,23 @@
   flex-grow: 3;
 }
 
-.createContainer {
-  display: none;
-  max-width: 600px;
-}
-
 .lightbox {
   z-index: 3;
   position: relative;
+}
+
+/* Create Message Styles */
+
+.sendButton {
+  height: 40px;
+  length: 60px;
+  align-self: flex-end;
+}
+.createContainer {
+  display: none;
+  /* max-width: 600px; */
+  width: 100%;
+  height: 15%;
 }
 
 .createBody {
@@ -67,24 +83,37 @@
 
 .createFooter {
   display: flex;
+  justify-content: space-between;
+}
+
+/* Container Styles */
+
+.messageList {
+  /* max-width: 600px; */
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20vh;
+}
+
+.messagesScrollContainer {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 
 .MoreButton {
-  height: 2.5vh;
+  height: 30px;
+  width: 100px;
 }
 
-.messageList {
-  max-width: 600px;
-  height: 85vh;
-  overflow-y: scroll;
-}
+/* Media Queries */
 
 @media only screen and (min-width: 40em) {
-  .messageList {
-    height: 75vh;
-  }
-
   .createContainer {
     display: block;
+  }
+
+  .messageList {
+    padding: 0;
   }
 }

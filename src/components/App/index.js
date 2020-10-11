@@ -39,9 +39,9 @@ class App extends Component {
           <div className={styles.fullPage}>
               <header>
                 <div className={styles.flexNavigation}>
-                    <div className={styles.toggleCreate} onClick={this.onToggleCreateLightbox}>
-                        power
-                    </div>
+                  <div className={styles.toggleCreate} onClick={this.onToggleCreateLightbox}>
+                      power
+                  </div>
                   <div className={styles.innerNav}>
                     <Navigation />
                   </div>
@@ -65,12 +65,12 @@ class App extends Component {
                 </>
               )}
               </AuthUserContext.Consumer>
-                <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-                <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-                <Route path={ROUTES.HOME} component={HomePage} />
-                <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-                <Route path={ROUTES.ADMIN} component={AdminPage} />
+                  <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                  <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+                  <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+                  <Route path={ROUTES.HOME} component={HomePage} />
+                  <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+                  <Route path={ROUTES.ADMIN} component={AdminPage} />
                 <aside>
                   <Promotional />
                 </aside>

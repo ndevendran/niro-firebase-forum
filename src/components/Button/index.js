@@ -25,6 +25,7 @@ export const ButtonFlat = ({ onClick, children,type }) => {
     <button
       type={type ? type : "button" }
       onClick={onClick}
+      className={styles.btn_flat}
     >
       {children}
     </button>

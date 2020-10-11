@@ -19,13 +19,17 @@
   box-sizing: border-box;
   color: white;
   background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);
-  background-color: #3c3c3c;
+  background-color: hsl(19, 100%, 52%);
   border: none;
   border-radius: .2em;
   line-height: 1.5;
   margin: auto;
   font-weight: bold;
   cursor: pointer;
+  letter-spacing: .5px;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
 }
 
 .btn_pop {
