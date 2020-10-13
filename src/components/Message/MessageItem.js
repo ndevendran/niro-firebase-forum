@@ -40,7 +40,7 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { authUser, message, onRemoveMessage, users } = this.props;
+        const { authUser, message, toggleCreateComment, users } = this.props;
         const { editMode, editText } = this.state;
         const poster = (users[message.userId] ? users[message.userId] : {profile_picture: ''});
 
@@ -61,6 +61,7 @@ class MessageItem extends Component {
                   message={message} onRemoveMessage={this.onRemoveMessage}
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
                   onLikeMessage={this.onLikeMessage}
+                  toggleCreateComment={toggleCreateComment}
                 />
               )}
               </div>

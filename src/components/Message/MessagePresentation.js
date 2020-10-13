@@ -5,7 +5,7 @@ import styles from './index.css';
 
 const MessagePresentation = ({ message,
   onRemoveMessage, onToggleEditMode,
-  onLikeMessage, authUser }) => {
+  onLikeMessage, toggleCreateComment, authUser }) => {
   return (
     <>
       <div className={styles.messageHeader}>
@@ -17,7 +17,7 @@ const MessagePresentation = ({ message,
       </div>
       <div className={styles.messageFunctions}>
         <div>
-          <span>
+          <span className={styles.messageLikes}>
             {(message.likes && message.likes.members && message.likes.members[authUser.uid])
               || (message.userId === authUser.uid)
                 ? (
@@ -31,8 +31,13 @@ const MessagePresentation = ({ message,
             )}
             {message.likes && message.likes.count}
           </span>
+          <span className={styles.icon} onClick={toggleCreateComment}>
+            bubble
+          </span>
         </div>
-        <div></div>
+        <div>
+
+        </div>
         <div>
           {authUser.uid === message.userId && (
               <span>

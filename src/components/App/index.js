@@ -12,7 +12,7 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import Promotional from '../Promotional';
-import { CreateMessage } from '../Message'
+import { CreateMessage } from '../Message';
 import { withAuthentication, AuthUserContext } from '../Session';
 import QuillIcon from '../../images/008-quill.svg';
 
@@ -27,11 +27,13 @@ class App extends Component {
     };
   }
 
-  onToggleCreateLightbox = () => {
+  onToggleCreateMessageLightbox = () => {
     this.setState((prevState) => ({
       displayCreateMessage: !prevState.displayCreateMessage,
     }));
   }
+
+
 
   render() {
     return (
@@ -39,7 +41,7 @@ class App extends Component {
           <div className={styles.fullPage}>
               <header>
                 <div className={styles.flexNavigation}>
-                  <div className={styles.toggleCreate} onClick={this.onToggleCreateLightbox}>
+                  <div className={styles.toggleCreate} onClick={this.onToggleCreateMessageLightbox}>
                       power
                   </div>
                   <div className={styles.innerNav}>
@@ -54,13 +56,13 @@ class App extends Component {
                 {
                   this.state.displayCreateMessage &&
                   <>
-                    <div className={styles.overlay} onClick={this.onToggleCreateLightbox}></div>
+                    <div className={styles.overlay} onClick={this.onToggleCreateMessageLightbox}>
+                    </div>
                     <div className={styles.createMessageLightbox}>
-                    <CreateMessage authUser={authUser} />
+                      <CreateMessage authUser={authUser} />
                     </div>
                   </>
                 }
-
                 <Route path={ROUTES.MESSAGE} component={()=><CreateMessage authUser={authUser}/>}/>
                 </>
               )}

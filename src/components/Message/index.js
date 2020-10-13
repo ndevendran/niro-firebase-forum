@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import CreateMessage from './CreateMessage.js';
 import { AuthUserContext } from '../Session';
 import Button, { ButtonFlat } from '../Button';
+import CreateComment from '../Comments/CreateComment.js';
 import styles from './index.css';
 
 class MessageBase extends Component {
@@ -17,6 +18,7 @@ class MessageBase extends Component {
             users: {},
             text: '',
             limit: 5,
+            displayCreateComment: false,
         };
     }
 
@@ -80,6 +82,12 @@ class MessageBase extends Component {
     componentWillUnmount() {
         this.props.firebase.messages().off();
         this.props.firebase.users().off();
+    }
+
+    onToggleCreateCommentLightbox = () => {
+      this.setState((prevState) => ({
+        displayCreateComment: !prevState.displayCreateComment,
+      }));
     }
 
 
@@ -162,10 +170,21 @@ class MessageBase extends Component {
                             authUser={authUser}
                             onLikeMessage={this.onLikeMessage}
                             users={users}
+                            toggleCreateComment={this.onToggleCreateCommentLightbox}
                         />
                     ) : (
                         <div>There are no messages...</div>
                     )}
+                    {
+                      this.state.displayCreateComment &&
+                      <>
+                        <div className={styles.overlay} onClick={this.onToggleCreateCommentLightbox}>
+                        </div>
+                        <div className={styles.createCommentLightbox}>
+                          <CreateComment authUser={authUser} />
+                        </div>
+                      </>
+                    }
                 </div>
             )}
             </AuthUserContext.Consumer>

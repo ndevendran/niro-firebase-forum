@@ -1,0 +1,17 @@
+.createComment {
+  display: flex;
+  border-radius: 99px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  justify-content: space-around;
+}
+
+.reply {
+  height: 300px;
+  width: 450px;
+  border: 1px solid black;
+}
+
+.createCommentFooter {
+  display: flex;
+}

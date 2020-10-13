@@ -104,6 +104,18 @@ class Firebase {
 
   messages = () => this.db.ref('messages');
 
+  // *** Comment API ***
+  writeComment = (comment, messageId) => {
+    this.db.ref(`comments/${messageId}`).push({
+      text: comment.text,
+      createdAt: this.serverValue.TIMESTAMP,
+      userId: comment.userId,
+      username: comment.username,
+    });
+  }
+
+  getCommentsForMessage = messageId => this.db.ref(`comments/${messageId}`);
+
   // *** Storage API ***
   getRef = () => this.storage.ref();
 }
