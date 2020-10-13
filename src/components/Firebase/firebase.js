@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/storage';
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -22,6 +23,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
+    this.storage = app.storage();
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.facebookProvider = new app.auth.FacebookAuthProvider();
@@ -64,6 +66,8 @@ class Firebase {
 
   users = () => this.db.ref('users');
 
+  getCurrentUser = () => this.auth.currentUser;
+
   // *** Merge Auth and DB User API ***
 
   onAuthUserListener = (next, fallback) =>
@@ -99,6 +103,9 @@ class Firebase {
   message = uid => this.db.ref(`messages/${uid}`);
 
   messages = () => this.db.ref('messages');
+
+  // *** Storage API ***
+  getRef = () => this.storage.ref();
 }
 
 export default Firebase;

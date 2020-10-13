@@ -1,0 +1,10 @@
+.profilePicture {
+  max-height: 150px;
+  max-width: 150px;
+}
+
+.uploadButtonContainer {
+  max-width: 100px;
+  max-height: 50px;
+  display: inline-block;
+}

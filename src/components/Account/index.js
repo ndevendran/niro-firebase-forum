@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as ROUTES from '../../constants/routes';
 import { NavigationAccount } from '../Navigation';
+import UploadAvatar from '../Upload/uploadAvatar.js';
 
 import {
     AuthUserContext,
@@ -41,9 +42,9 @@ const AccountPage = () => (
                 <div className={styles.accountNavigation}>
                   <NavigationAccount />
                 </div>
-
                 <div className={styles.accountMain}>
                   <h1>Account: {authUser.email}</h1>
+                  <UploadAvatar />
                   <Route exact path={ROUTES.PASSWORD_FORGET}><PasswordForgetForm /></Route>
                   <Route path={ROUTES.PASSWORD_CHANGE}><PasswordChangeForm /></Route>
                   <Route path={ROUTES.SIGN_IN_METHODS}><LoginManagement authUser={authUser}/></Route>

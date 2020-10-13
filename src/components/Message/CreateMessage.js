@@ -36,7 +36,7 @@ class CreateMessage extends Component {
     return (
         <div className={styles.container} ref='createMessage'>
           <div className={styles.avatarContainer}>
-            <Profile />
+            <Profile url={this.props.authUser.profile_picture}/>
           </div>
           <div className={styles.messageContainer}>
             <form onSubmit={this.onCreateMessage}>

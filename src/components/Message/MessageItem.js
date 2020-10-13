@@ -40,13 +40,14 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { authUser, message, onRemoveMessage } = this.props;
+        const { authUser, message, onRemoveMessage, users } = this.props;
         const { editMode, editText } = this.state;
+        const poster = (users[message.userId] ? users[message.userId] : {profile_picture: ''});
 
         return (
             <li className={styles.container}>
               <div className={styles.avatarContainer}>
-                <Profile />
+                <Profile url={poster.profile_picture}/>
               </div>
               <div className={styles.messageContainer}>
               {editMode ? (

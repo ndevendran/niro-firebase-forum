@@ -14,6 +14,7 @@ class MessageBase extends Component {
         this.state = {
             loading: false,
             messages: [],
+            users: {},
             text: '',
             limit: 5,
         };
@@ -21,6 +22,24 @@ class MessageBase extends Component {
 
     componentDidMount() {
         this.onListenForMessages();
+        this.onListenForUsers();
+    }
+
+    onListenForUsers() {
+      this.setState({ loading: true });
+      this.props.firebase
+      .users()
+      .once('value')
+      .then(snapshot => {
+        if(snapshot.val()){
+          this.setState({
+            users: snapshot.val(),
+            loading: false,
+          });
+        } else {
+          console.log("User lookup failed...");
+        }
+      });
     }
 
     onListenForMessages() {
@@ -60,6 +79,7 @@ class MessageBase extends Component {
 
     componentWillUnmount() {
         this.props.firebase.messages().off();
+        this.props.firebase.users().off();
     }
 
 
@@ -117,7 +137,7 @@ class MessageBase extends Component {
     }
 
     render() {
-        const { text, messages, loading } = this.state;
+        const { text, messages, loading, users } = this.state;
 
         return (
             <div className={styles.messagesScrollContainer}>
@@ -135,12 +155,13 @@ class MessageBase extends Component {
                         </div>
                     )}
                     {loading && <div> Loading...</div>}
-                    {messages ? (
+                    {(messages && users) ? (
                         <MessageList messages={messages}
                             onRemoveMessage={this.onRemoveMessage}
                             onEditMessage={this.onEditMessage}
                             authUser={authUser}
                             onLikeMessage={this.onLikeMessage}
+                            users={users}
                         />
                     ) : (
                         <div>There are no messages...</div>

@@ -11,7 +11,7 @@ class Profile extends Component {
     render() {
         return(
             <div className={styles.profile_picture}>
-                <img className={styles.avatar} src={Avatar} alt="profile picture" />
+                <img className={styles.avatar} src={this.props.url} alt="profile picture" />
             </div>
         )
     }
