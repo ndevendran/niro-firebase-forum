@@ -105,8 +105,8 @@ class Firebase {
   messages = () => this.db.ref('messages');
 
   // *** Comment API ***
-  writeComment = (comment, messageId) => {
-    this.db.ref(`comments/${messageId}`).push({
+  writeComment = (comment, messageId, basePath) => {
+    this.db.ref(`${basePath}comments/${messageId}/`).push({
       text: comment.text,
       createdAt: this.serverValue.TIMESTAMP,
       userId: comment.userId,
@@ -115,6 +115,8 @@ class Firebase {
   }
 
   getCommentsForMessage = messageId => this.db.ref(`comments/${messageId}`);
+
+  comments = (path) => this.db.ref(path);
 
   // *** Storage API ***
   getRef = () => this.storage.ref();

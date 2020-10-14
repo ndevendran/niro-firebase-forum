@@ -5,7 +5,7 @@ import styles from './index.css';
 
 const MessagePresentation = ({ message,
   onRemoveMessage, onToggleEditMode,
-  onLikeMessage, toggleCreateComment, authUser }) => {
+  onLikeMessage, toggleCreateComment, authUser, setActiveMessage, depth }) => {
   return (
     <>
       <div className={styles.messageHeader}>
@@ -31,9 +31,13 @@ const MessagePresentation = ({ message,
             )}
             {message.likes && message.likes.count}
           </span>
-          <span className={styles.icon} onClick={toggleCreateComment}>
-            bubble
-          </span>
+          {
+            (depth < 5) && (
+              <span className={styles.icon} onClick={() => toggleCreateComment(event, message.uid)}>
+                bubble
+              </span>
+            )
+          }
         </div>
         <div>
 

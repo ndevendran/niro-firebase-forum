@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MessageList from '../Message/MessageList.js';
+import MessageItem from '../Message/MessageItem.js';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import CreateMessage from './CreateMessage.js';
@@ -19,6 +20,7 @@ class MessageBase extends Component {
             text: '',
             limit: 5,
             displayCreateComment: false,
+            activeMessage: null,
         };
     }
 
@@ -88,64 +90,23 @@ class MessageBase extends Component {
       this.setState((prevState) => ({
         displayCreateComment: !prevState.displayCreateComment,
       }));
+
+      console.log(this.state.activeMessage);
     }
 
+    setActiveMessage = (messageId) => {
+      this.setState((prevState) => ({
+        activeMessage:  messageId,
+      }));
+    }
 
-    onRemoveMessage = uid => {
-        this.props.firebase.message(uid).remove();
-    };
-
-    onEditMessage = (message, text) => {
-        const { uid, ...messageSnapshot } = message;
-
-        this.props.firebase.message(message.uid).set({
-            ...messageSnapshot,
-            text,
-            editedAt: this.props.firebase.serverValue.TIMESTAMP,
-        });
-    };
-
-    onLikeMessage = (message, user) => {
-      if(message.userId === user.uid){
-        return;
-      }
-
-
-      let likes;
-      if(!message.likes){
-        likes = {};
-        likes.members = {};
-        likes.members[user.uid] = true;
-        likes.count = 1;
-
-        message.likes = likes;
-      } else if(message.likes && (!message.likes.members || !message.likes.members[user.uid])){
-        likes = message.likes;
-        if(!likes.members) {
-          likes.members = {};
-        }
-        likes.members[user.uid] = true;
-        likes.count = likes.count + 1;
-        message.likes = likes;
-      } else if(message.likes && message.likes.members[user.uid]){
-        likes = message.likes;
-        delete likes.members[user.uid];
-        likes.count = likes.count - 1;
-        if(likes.count === 0)
-          message.likes = null;
-        else
-          message.likes = likes;
-      }
-
-      this.props.firebase.message(message.uid).set({
-        ...message
-      });
-
-      return message;
+    getActiveMessage = () => {
+      return this.state.activeMessage;
     }
 
     render() {
         const { text, messages, loading, users } = this.state;
+        const depth = 1;
 
         return (
             <div className={styles.messagesScrollContainer}>
@@ -165,12 +126,12 @@ class MessageBase extends Component {
                     {loading && <div> Loading...</div>}
                     {(messages && users) ? (
                         <MessageList messages={messages}
-                            onRemoveMessage={this.onRemoveMessage}
-                            onEditMessage={this.onEditMessage}
                             authUser={authUser}
-                            onLikeMessage={this.onLikeMessage}
                             users={users}
                             toggleCreateComment={this.onToggleCreateCommentLightbox}
+                            setActiveMessage={this.setActiveMessage}
+                            depth={depth}
+                            basePath=""
                         />
                     ) : (
                         <div>There are no messages...</div>
@@ -181,7 +142,11 @@ class MessageBase extends Component {
                         <div className={styles.overlay} onClick={this.onToggleCreateCommentLightbox}>
                         </div>
                         <div className={styles.createCommentLightbox}>
-                          <CreateComment authUser={authUser} />
+                          <CreateComment authUser={authUser}
+                            getActiveMessage={this.getActiveMessage}
+                            toggleCreateComment={this.onToggleCreateCommentLightbox}
+                            basePath=""
+                          />
                         </div>
                       </>
                     }
@@ -194,7 +159,7 @@ class MessageBase extends Component {
 }
 
 
-export { CreateMessage };
+export { CreateMessage, MessageList, MessageItem };
 
 const Messages = withFirebase(MessageBase);
 

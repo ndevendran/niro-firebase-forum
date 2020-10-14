@@ -3,6 +3,7 @@ import EditMessageForm from './EditMessageForm.js';
 import MessagePresentation from './MessagePresentation.js';
 import Profile from '../Profile';
 import styles from './index.css';
+import { withFirebase } from '../Firebase';
 
 class MessageItem extends Component {
     constructor(props) {
@@ -26,26 +27,78 @@ class MessageItem extends Component {
     }
 
     onSaveEditText = () => {
-        this.props.onEditMessage(this.props.message, this.state.editText);
+        this.onEditMessage(this.props.message, this.state.editText);
 
         this.setState({ editMode: false });
     };
 
-    onRemoveMessage = () => {
-      this.props.onRemoveMessage(this.props.message.uid);
-    }
+    onEditMessage = (message, text) => {
+        const { uid, ...messageSnapshot } = message;
+
+        this.props.firebase.message(message.uid).set({
+            ...messageSnapshot,
+            text,
+            editedAt: this.props.firebase.serverValue.TIMESTAMP,
+        });
+    };
+
+    onRemoveMessage = uid => {
+        this.props.firebase.message(uid).remove();
+    };
 
     onLikeMessage = () => {
-      this.props.onLikeMessage(this.props.message, this.props.authUser);
+      const message = this.props.message;
+      const user = this.props.authUser;
+      if(message.userId === user.uid){
+        return;
+      }
+
+
+      let likes;
+      if(!message.likes){
+        likes = {};
+        likes.members = {};
+        likes.members[user.uid] = true;
+        likes.count = 1;
+
+        message.likes = likes;
+      } else if(message.likes && (!message.likes.members || !message.likes.members[user.uid])){
+        likes = message.likes;
+        if(!likes.members) {
+          likes.members = {};
+        }
+        likes.members[user.uid] = true;
+        likes.count = likes.count + 1;
+        message.likes = likes;
+      } else if(message.likes && message.likes.members[user.uid]){
+        likes = message.likes;
+        delete likes.members[user.uid];
+        likes.count = likes.count - 1;
+        if(likes.count === 0)
+          message.likes = null;
+        else
+          message.likes = likes;
+      }
+
+      this.props.firebase.message(message.uid).set({
+        ...message
+      });
+
+      return message;
+    }
+
+    onToggleCreateComment = () => {
+      this.props.setActiveMessage(this.props.message.uid, this.props.basePath);
+      this.props.toggleCreateComment();
     }
 
     render() {
-        const { authUser, message, toggleCreateComment, users } = this.props;
+        const { authUser, message, users, depth } = this.props;
         const { editMode, editText } = this.state;
         const poster = (users[message.userId] ? users[message.userId] : {profile_picture: ''});
 
         return (
-            <li className={styles.container}>
+            <div className={styles.container}>
               <div className={styles.avatarContainer}>
                 <Profile url={poster.profile_picture}/>
               </div>
@@ -61,13 +114,14 @@ class MessageItem extends Component {
                   message={message} onRemoveMessage={this.onRemoveMessage}
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
                   onLikeMessage={this.onLikeMessage}
-                  toggleCreateComment={toggleCreateComment}
+                  toggleCreateComment={this.onToggleCreateComment}
+                  depth={depth}
                 />
               )}
               </div>
-            </li>
+            </div>
         );
     }
 }
 
-export default MessageItem;
+export default withFirebase(MessageItem);

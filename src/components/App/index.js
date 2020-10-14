@@ -13,6 +13,7 @@ import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import Promotional from '../Promotional';
 import { CreateMessage } from '../Message';
+import CommentList from '../Comments';
 import { withAuthentication, AuthUserContext } from '../Session';
 import QuillIcon from '../../images/008-quill.svg';
 
@@ -73,6 +74,7 @@ class App extends Component {
                   <Route path={ROUTES.HOME} component={HomePage} />
                   <Route path={ROUTES.ACCOUNT} component={AccountPage} />
                   <Route path={ROUTES.ADMIN} component={AdminPage} />
+                  <Route path={ROUTES.MESSAGE_DETAILS} component={CommentList} />
                 <aside>
                   <Promotional />
                 </aside>

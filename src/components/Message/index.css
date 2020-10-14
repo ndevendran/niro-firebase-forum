@@ -130,6 +130,11 @@
   background: rgba(0,0,0,.8);
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Media Queries */
 
 @media only screen and (min-width: 40em) {

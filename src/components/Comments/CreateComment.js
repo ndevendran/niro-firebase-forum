@@ -12,25 +12,54 @@ class CreateCommentBase extends Component {
 
     this.state = {
       text: '',
+      maxCharacters: 160,
+      charactersLeft: 160,
     };
   }
 
-  componentDidMount() {
-    console.log(this.props.authUser);
+  onChange = event => {
+    if(event.target.value.length > this.state.maxCharacters)
+      return;
+    else {
+      const charactersLeft = this.state.maxCharacters - event.target.value.length;
+      this.setState({
+        text: event.target.value,
+        charactersLeft: charactersLeft,
+      });
+    }
+  }
+
+  onCreateComment = () => {
+    const activeMessage = this.props.getActiveMessage();
+    this.props.firebase.writeComment({
+      text: this.state.text,
+      userId: this.props.authUser.uid,
+      username: this.props.authUser.username,
+    }, activeMessage, this.props.basePath);
+
+    this.setState({ text: ''});
+    this.props.toggleCreateComment();
   }
 
   render() {
+    const { messageMaxCharacters, charactersLeft } = this.state;
     return (
       <div className={styles.createComment}>
         <div className={messageStyles.avatarContainer}>
           <Profile url={this.props.authUser.profile_picture} />
         </div>
         <div>
-          <div className={styles.reply}>Your reply...</div>
+            <textarea
+                rows="6"
+                cols="60"
+                type="text"
+                value={this.state.text}
+                onChange={this.onChange}
+            />
           <div className={messageStyles.createFooter}>
-            <div>Format Options</div>
+            <div className={styles.commentCharsLeft}>{charactersLeft} characters left</div>
             <div className={messageStyles.sendButton}>
-              <ButtonFlat>Send</ButtonFlat>
+              <ButtonFlat onClick={this.onCreateComment}>Send</ButtonFlat>
             </div>
           </div>
         </div>
@@ -39,4 +68,4 @@ class CreateCommentBase extends Component {
   }
 }
 
-export default CreateCommentBase;
+export default withFirebase(CreateCommentBase);

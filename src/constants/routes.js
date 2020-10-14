@@ -9,3 +9,5 @@ export const PASSWORD_FORGET = '/account/pw-forget';
 export const PASSWORD_CHANGE = '/account/pw-change';
 export const SIGN_IN_METHODS = '/account/methods';
 export const MESSAGE = '/compose/message';
+export const COMMENTS = '/comments';
+export const MESSAGE_DETAILS = '/comments/:id';

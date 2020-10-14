@@ -10,8 +10,17 @@
   height: 300px;
   width: 450px;
   border: 1px solid black;
+  color: black;
 }
 
 .createCommentFooter {
   display: flex;
+}
+
+.commentCharsLeft {
+  color: black;
+}
+
+.scrollable {
+  overflow-y: scroll;
 }
