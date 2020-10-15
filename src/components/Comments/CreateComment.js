@@ -31,11 +31,12 @@ class CreateCommentBase extends Component {
 
   onCreateComment = () => {
     const activeMessage = this.props.getActiveMessage();
+    const basePath = this.props.getBasePath();
     this.props.firebase.writeComment({
       text: this.state.text,
       userId: this.props.authUser.uid,
       username: this.props.authUser.username,
-    }, activeMessage, this.props.basePath);
+    }, activeMessage, basePath);
 
     this.setState({ text: ''});
     this.props.toggleCreateComment();

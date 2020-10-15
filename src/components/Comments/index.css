@@ -24,3 +24,22 @@
 .scrollable {
   overflow-y: scroll;
 }
+
+.createCommentLightbox {
+  position: absolute;
+  z-index: 3;
+  top: 30%;
+  margin: auto;
+  background-color: white;
+  max-width: 600px;
+}
+
+.overlay {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,.8);
+}

@@ -88,7 +88,7 @@ class MessageItem extends Component {
     }
 
     onToggleCreateComment = () => {
-      this.props.setActiveMessage(this.props.message.uid, this.props.basePath);
+      this.props.setActiveMessage(this.props.message.uid, this.props.path);
       this.props.toggleCreateComment();
     }
 

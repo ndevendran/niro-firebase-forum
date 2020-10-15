@@ -106,7 +106,7 @@ class Firebase {
 
   // *** Comment API ***
   writeComment = (comment, messageId, basePath) => {
-    this.db.ref(`${basePath}comments/${messageId}/`).push({
+    this.db.ref(`${basePath}`).push({
       text: comment.text,
       createdAt: this.serverValue.TIMESTAMP,
       userId: comment.userId,

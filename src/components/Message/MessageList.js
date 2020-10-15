@@ -11,7 +11,7 @@ const MessageList = ({
     authUser, users, basePath, depth }) => (
     <>
     <ul className={styles.messageList}>
-        {messages.map(message => (
+        { messages.map(message => (
             <li key={message.uid}>
             <Link to={{pathname: `${ROUTES.COMMENTS}/${message.uid}`, state: { message, depth, basePath, users },}}>
               <MessageItem
@@ -22,6 +22,7 @@ const MessageList = ({
                   toggleCreateComment={toggleCreateComment}
                   setActiveMessage={setActiveMessage}
                   depth={depth}
+                  path={`${basePath}/${message.uid}/comments`}
               />
             </Link>
             </li>

@@ -131,7 +131,7 @@ class MessageBase extends Component {
                             toggleCreateComment={this.onToggleCreateCommentLightbox}
                             setActiveMessage={this.setActiveMessage}
                             depth={depth}
-                            basePath=""
+                            basePath="/comments"
                         />
                     ) : (
                         <div>There are no messages...</div>

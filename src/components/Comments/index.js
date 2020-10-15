@@ -22,7 +22,9 @@ class CommentsBase extends Component {
 
   onListenForComments() {
     const { message, basePath } = this.props.location.state;
-    this.props.firebase.comments(`${basePath}comments/${message.uid}`)
+    const path = `${basePath}/${message.uid}/comments`;
+    console.log(path);
+    this.props.firebase.comments(`${path}`)
       .orderByChild('createdAt')
       .limitToLast(this.state.limit)
       .on('value', (snapshot) => {
@@ -50,6 +52,17 @@ class CommentsBase extends Component {
     this.onListenForComments();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.location.state.basePath !== this.props.location.state.basePath) {
+      this.props.firebase.comments().off();
+      this.onListenForComments();
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.firebase.comments().off();
+  }
+
   toggleCreateComment = () => {
     this.setState((prevState) => ({
       displayCreateComment: !prevState.displayCreateComment,
@@ -57,7 +70,6 @@ class CommentsBase extends Component {
   }
 
   setActiveMessage = (messageId, basePath) => {
-    console.log(basePath);
     this.setState({
       activeMessage: messageId,
       basePath: basePath,
@@ -68,10 +80,13 @@ class CommentsBase extends Component {
     return this.state.activeMessage;
   }
 
+  getBasePath = () => {
+    return this.state.basePath;
+  }
+
   render() {
     const { message, depth, basePath } = this.props.location.state;
     const { comments, users } = this.state;
-    const nextBasePath = basePath + `comments/${message.id}`;
     return (
       <AuthUserContext.Consumer>
       { authUser => (
@@ -84,12 +99,12 @@ class CommentsBase extends Component {
               authUser={authUser}
               users={users}
               depth={depth}
-              basePath={basePath}
+              path={`${basePath}/${message.uid}/comments`}
               toggleCreateComment={this.toggleCreateComment}
               setActiveMessage={this.setActiveMessage}
             />
           )}
-          {comments && (
+          {(comments && message) && (
             <MessageList
               messages={comments}
               authUser={authUser}
@@ -97,20 +112,20 @@ class CommentsBase extends Component {
               toggleCreateComment={this.toggleCreateComment}
               setActiveMessage={this.setActiveMessage}
               depth={depth+1}
-              basePath={nextBasePath}
+              basePath={`${basePath}/${message.uid}/comments`}
             />
           )}
           {
             this.state.displayCreateComment &&
             <>
-              <div className={styles.overlay} onClick={this.onToggleCreateCommentLightbox}>
+              <div className={styles.overlay} onClick={this.toggleCreateComment}>
               </div>
               <div className={styles.createCommentLightbox}>
                 <CreateComment
                   authUser={authUser}
                   getActiveMessage={this.getActiveMessage}
+                  getBasePath={this.getBasePath}
                   toggleCreateComment={this.toggleCreateComment}
-                  basePath={this.state.basePath}
                 />
               </div>
             </>
