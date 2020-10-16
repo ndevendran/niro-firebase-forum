@@ -91,7 +91,6 @@ class MessageBase extends Component {
         displayCreateComment: !prevState.displayCreateComment,
       }));
 
-      console.log(this.state.activeMessage);
     }
 
     setActiveMessage = (messageId) => {

@@ -15,15 +15,16 @@ class CommentsBase extends Component {
       users: this.props.location.state.users,
       limit: 20,
       basePath: this.props.location.state.basePath,
+      message: this.props.location.state.message,
       displayCreateComment: false,
       activeMessage: this.props.location.state.message.uid,
     }
   }
 
   onListenForComments() {
-    const { message, basePath } = this.props.location.state;
+    const message = this.props.location.state.message;
+    const basePath = this.props.location.state.basePath
     const path = `${basePath}/${message.uid}/comments`;
-    console.log(path);
     this.props.firebase.comments(`${path}`)
       .orderByChild('createdAt')
       .limitToLast(this.state.limit)

@@ -93,7 +93,7 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { authUser, message, users, depth } = this.props;
+        const { authUser, message, users, depth, commentCount } = this.props;
         const { editMode, editText } = this.state;
         const poster = (users[message.userId] ? users[message.userId] : {profile_picture: ''});
 
