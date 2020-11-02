@@ -16,10 +16,11 @@ class CreateMessage extends Component {
   }
 
   onCreateMessage = (event) => {
-      this.props.firebase.messages().push({
+      this.props.firebase.writeMessage({
           text: this.state.text,
           userId: this.props.authUser.uid,
-          createdAt: this.props.firebase.serverValue.TIMESTAMP,
+          profile_picture: this.props.authUser.profile_picture,
+          username: this.props.authUser.username,
       });
 
       this.setState({ text: '' });

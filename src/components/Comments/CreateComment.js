@@ -3,6 +3,7 @@ import { ButtonFlat } from '../Button';
 import Profile from '../Profile';
 import { withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase';
+import { Redirect } from 'react-router-dom';
 import styles from './index.css';
 import messageStyles from '../Message/index.css';
 
@@ -14,6 +15,7 @@ class CreateCommentBase extends Component {
       text: '',
       maxCharacters: 160,
       charactersLeft: 160,
+      redirect: false,
     };
   }
 
@@ -31,19 +33,33 @@ class CreateCommentBase extends Component {
 
   onCreateComment = () => {
     const activeMessage = this.props.getActiveMessage();
-    const basePath = this.props.getBasePath();
     this.props.firebase.writeComment({
       text: this.state.text,
       userId: this.props.authUser.uid,
       username: this.props.authUser.username,
-    }, activeMessage, basePath);
+      profile_picture: this.props.authUser.profile_picture,
+    }, activeMessage.uid);
 
-    this.setState({ text: ''});
+    this.setState({ text: '', redirect: true});
     this.props.toggleCreateComment();
   }
 
   render() {
-    const { messageMaxCharacters, charactersLeft } = this.state;
+    const { messageMaxCharacters, charactersLeft, redirect } = this.state;
+    const activeMessage = this.props.getActiveMessage();
+    const { users } = this.props;
+    if(redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/comments/${activeMessage.uid}`,
+            state: { message: activeMessage,
+              users: users,
+            }
+          }}
+        />
+      );
+    }
     return (
       <div className={styles.createComment}>
         <div className={messageStyles.avatarContainer}>

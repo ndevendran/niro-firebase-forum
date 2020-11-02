@@ -102,19 +102,42 @@ class Firebase {
   // *** Message API ***
   message = uid => this.db.ref(`messages/${uid}`);
 
+  writeMessage = (message) => {
+    this.db.ref(`messages`).push(
+      {
+        text: message.text,
+        userId: message.userId,
+        username: message.username,
+        profile_picture: message.profile_picture,
+        createdAt: this.serverValue.TIMESTAMP,
+      });
+  }
+
+  getMessages = (limit) => {
+    let messageRef = this.db.ref('messages');
+    return messageRef.orderByValue('createdAt')
+      .limitToFirst(limit)
+      .once('value');
+  }
+
   messages = () => this.db.ref('messages');
 
   // *** Comment API ***
-  writeComment = (comment, messageId, basePath) => {
-    this.db.ref(`${basePath}`).push({
+  writeComment = (comment, messageId) => {
+    this.db.ref(`comments`).push({
       text: comment.text,
       createdAt: this.serverValue.TIMESTAMP,
       userId: comment.userId,
       username: comment.username,
+      parentId: messageId,
+      profile_picture: comment.profile_picture,
     });
   }
 
-  getCommentsForMessage = messageId => this.db.ref(`comments/${messageId}`);
+  getComments = messageId => {
+    let commentsRef = this.db.ref(`comments`);
+    return commentsRef.orderByKey('parentId').equalTo(messageId);
+  }
 
   comments = (path) => this.db.ref(path);
 

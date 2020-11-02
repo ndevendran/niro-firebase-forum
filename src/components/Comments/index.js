@@ -12,22 +12,16 @@ class CommentsBase extends Component {
     this.state = {
       loading: false,
       comments: [],
-      users: this.props.location.state.users,
       limit: 20,
-      basePath: this.props.location.state.basePath,
-      message: this.props.location.state.message,
       displayCreateComment: false,
-      activeMessage: this.props.location.state.message.uid,
+      activeMessage: null,
     }
   }
 
-  onListenForComments() {
-    const message = this.props.location.state.message;
-    const basePath = this.props.location.state.basePath
-    const path = `${basePath}/${message.uid}/comments`;
-    this.props.firebase.comments(`${path}`)
-      .orderByChild('createdAt')
-      .limitToLast(this.state.limit)
+  onListenForComments(message) {
+    this.props.firebase.comments(`comments`)
+      .orderByChild('parentId')
+      .equalTo(message.uid)
       .on('value', (snapshot) => {
         const commentObject = snapshot.val();
         if(commentObject) {
@@ -50,13 +44,21 @@ class CommentsBase extends Component {
   }
 
   componentDidMount() {
-    this.onListenForComments();
+    this.onListenForComments(this.props.location.state.message);
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("The component is getting new comments...");
+  //   this.props.firebase.comments().off();
+  //   this.onListenForComments(nextProps.location.state.message);
+  // }
+
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.location.state.basePath !== this.props.location.state.basePath) {
+    if(prevProps.location.state.message.uid
+        !== this.props.location.state.message.uid) {
+      console.log("The component is getting new comments...");
       this.props.firebase.comments().off();
-      this.onListenForComments();
+      this.onListenForComments(this.props.location.state.message);
     }
   }
 
@@ -70,10 +72,9 @@ class CommentsBase extends Component {
     }))
   }
 
-  setActiveMessage = (messageId, basePath) => {
+  setActiveMessage = (message) => {
     this.setState({
-      activeMessage: messageId,
-      basePath: basePath,
+      activeMessage: message,
     });
   }
 
@@ -86,8 +87,8 @@ class CommentsBase extends Component {
   }
 
   render() {
-    const { message, depth, basePath } = this.props.location.state;
-    const { comments, users } = this.state;
+    const { message, users } = this.props.location.state;
+    const { comments } = this.state;
     return (
       <AuthUserContext.Consumer>
       { authUser => (
@@ -99,8 +100,6 @@ class CommentsBase extends Component {
               message={message}
               authUser={authUser}
               users={users}
-              depth={depth}
-              path={`${basePath}/${message.uid}/comments`}
               toggleCreateComment={this.toggleCreateComment}
               setActiveMessage={this.setActiveMessage}
             />
@@ -112,8 +111,6 @@ class CommentsBase extends Component {
               users={users}
               toggleCreateComment={this.toggleCreateComment}
               setActiveMessage={this.setActiveMessage}
-              depth={depth+1}
-              basePath={`${basePath}/${message.uid}/comments`}
             />
           )}
           {
@@ -125,8 +122,8 @@ class CommentsBase extends Component {
                 <CreateComment
                   authUser={authUser}
                   getActiveMessage={this.getActiveMessage}
-                  getBasePath={this.getBasePath}
                   toggleCreateComment={this.toggleCreateComment}
+                  users={users}
                 />
               </div>
             </>

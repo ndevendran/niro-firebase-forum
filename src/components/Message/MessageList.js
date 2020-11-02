@@ -8,12 +8,14 @@ const MessageList = ({
     messages, onRemoveMessage,
     onEditMessage, onLikeMessage,
     toggleCreateComment, setActiveMessage,
-    authUser, users, basePath, depth }) => (
+    authUser, users}) => (
     <>
     <ul className={styles.messageList}>
         { messages.map(message => (
             <li key={message.uid}>
-            <Link to={{pathname: `${ROUTES.COMMENTS}/${message.uid}`, state: { message, depth, basePath, users },}}>
+            <Link to={{pathname: `${ROUTES.COMMENTS}/${message.uid}`,
+              state: { message, users },}}
+            >
               <MessageItem
                   key={message.uid}
                   message={message}
@@ -21,8 +23,6 @@ const MessageList = ({
                   users={users}
                   toggleCreateComment={toggleCreateComment}
                   setActiveMessage={setActiveMessage}
-                  depth={depth}
-                  path={`${basePath}/${message.uid}/comments`}
               />
             </Link>
             </li>

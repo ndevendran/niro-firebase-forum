@@ -6,12 +6,12 @@ import styles from './index.css';
 const MessagePresentation = ({ message,
   onRemoveMessage, onToggleEditMode,
   onLikeMessage, toggleCreateComment,
-  authUser, setActiveMessage, depth,
-  commentCount }) => {
+  authUser, setActiveMessage,
+  commentCount, poster }) => {
   return (
     <>
       <div className={styles.messageHeader}>
-          <strong>{message.userId}</strong>
+          <strong>{poster.username || 'Anonymous'}</strong>
       </div>
       <div className={styles.messageBody}>
         {message.text}
@@ -34,8 +34,8 @@ const MessagePresentation = ({ message,
             {message.likes && message.likes.count}
           </span>
           {
-            (depth < 5) && (
-              <span className={styles.icon} onClick={() => toggleCreateComment(event, message.uid)}>
+            (true) && (
+              <span className={styles.icon} onClick={toggleCreateComment}>
                 bubble
               </span>
             )}

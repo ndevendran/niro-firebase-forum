@@ -83,14 +83,12 @@ class MessageBase extends Component {
 
     componentWillUnmount() {
         this.props.firebase.messages().off();
-        this.props.firebase.users().off();
     }
 
     onToggleCreateCommentLightbox = () => {
       this.setState((prevState) => ({
         displayCreateComment: !prevState.displayCreateComment,
       }));
-
     }
 
     setActiveMessage = (messageId) => {
@@ -129,8 +127,6 @@ class MessageBase extends Component {
                             users={users}
                             toggleCreateComment={this.onToggleCreateCommentLightbox}
                             setActiveMessage={this.setActiveMessage}
-                            depth={depth}
-                            basePath="/comments"
                         />
                     ) : (
                         <div>There are no messages...</div>
@@ -141,10 +137,10 @@ class MessageBase extends Component {
                         <div className={styles.overlay} onClick={this.onToggleCreateCommentLightbox}>
                         </div>
                         <div className={styles.createCommentLightbox}>
-                          <CreateComment authUser={authUser}
+                          <CreateComment
+                            authUser={authUser}
                             getActiveMessage={this.getActiveMessage}
                             toggleCreateComment={this.onToggleCreateCommentLightbox}
-                            basePath=""
                           />
                         </div>
                       </>

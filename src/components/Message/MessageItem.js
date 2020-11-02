@@ -88,14 +88,15 @@ class MessageItem extends Component {
     }
 
     onToggleCreateComment = () => {
-      this.props.setActiveMessage(this.props.message.uid, this.props.path);
+      this.props.setActiveMessage(this.props.message);
       this.props.toggleCreateComment();
     }
 
     render() {
         const { authUser, message, users, depth, commentCount } = this.props;
         const { editMode, editText } = this.state;
-        const poster = (users[message.userId] ? users[message.userId] : {profile_picture: ''});
+        const poster = (users[message.userId] ? users[message.userId] :
+          {profile_picture: '', displayName: 'Anonymous'});
 
         return (
             <div className={styles.container}>
@@ -115,7 +116,7 @@ class MessageItem extends Component {
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
                   onLikeMessage={this.onLikeMessage}
                   toggleCreateComment={this.onToggleCreateComment}
-                  depth={depth}
+                  poster={poster}
                 />
               )}
               </div>
