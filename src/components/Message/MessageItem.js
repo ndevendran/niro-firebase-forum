@@ -13,6 +13,7 @@ class MessageItem extends Component {
             editMode: false,
             editText: this.props.message.text,
         };
+
     }
 
     onToggleEditMode = () => {
@@ -35,15 +36,39 @@ class MessageItem extends Component {
     onEditMessage = (message, text) => {
         const { uid, ...messageSnapshot } = message;
 
-        this.props.firebase.message(message.uid).set({
+        if(messageSnapshot.parentId) {
+          this.props.firebase.comment(uid).set({
             ...messageSnapshot,
             text,
             editedAt: this.props.firebase.serverValue.TIMESTAMP,
-        });
+          });
+        } else {
+          this.props.firebase.message(uid).set({
+              ...messageSnapshot,
+              text,
+              editedAt: this.props.firebase.serverValue.TIMESTAMP,
+          });
+        }
     };
 
-    onRemoveMessage = uid => {
-        this.props.firebase.message(uid).remove();
+    onRemoveMessage = () => {
+        const { uid, ...messageSnapshot } = this.props.message;
+        console.log(uid);
+
+        if(messageSnapshot.parentId) {
+          this.props.firebase.comment(uid).set({
+            ...messageSnapshot,
+            text: 'This comment has been deleted',
+            editedAt: this.props.firebase.serverValue.TIMESTAMP,
+          });
+        }
+        else {
+          this.props.firebase.message(uid).set({
+            ...messageSnapshot,
+            text: 'This message has been deleted',
+            editedAt: this.props.firebase.serverValue.TIMESTAMP,
+          });
+        }
     };
 
     onLikeMessage = () => {
@@ -93,15 +118,13 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { authUser, message, users, depth, commentCount } = this.props;
+        const { authUser, message, depth, commentCount } = this.props;
         const { editMode, editText } = this.state;
-        const poster = (users[message.userId] ? users[message.userId] :
-          {profile_picture: '', displayName: 'Anonymous'});
 
         return (
             <div className={styles.container}>
               <div className={styles.avatarContainer}>
-                <Profile url={poster.profile_picture}/>
+                <Profile url={message.profile_picture}/>
               </div>
               <div className={styles.messageContainer}>
               {editMode ? (
@@ -116,7 +139,6 @@ class MessageItem extends Component {
                   onToggleEditMode={this.onToggleEditMode} authUser={authUser}
                   onLikeMessage={this.onLikeMessage}
                   toggleCreateComment={this.onToggleCreateComment}
-                  poster={poster}
                 />
               )}
               </div>

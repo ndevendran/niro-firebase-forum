@@ -7,11 +7,11 @@ const MessagePresentation = ({ message,
   onRemoveMessage, onToggleEditMode,
   onLikeMessage, toggleCreateComment,
   authUser, setActiveMessage,
-  commentCount, poster }) => {
+  commentCount }) => {
   return (
     <>
       <div className={styles.messageHeader}>
-          <strong>{poster.username || 'Anonymous'}</strong>
+          <strong>{message.username || 'Anonymous'}</strong>
       </div>
       <div className={styles.messageBody}>
         {message.text}
@@ -47,7 +47,8 @@ const MessagePresentation = ({ message,
           {authUser.uid === message.userId && (
               <span>
                 <span className={styles.icon}
-                  onClick={onRemoveMessage}>bin
+                  onClick={onRemoveMessage}>
+                  bin
                 </span>
                 <span className={styles.icon}
                   onClick={onToggleEditMode}>pencil

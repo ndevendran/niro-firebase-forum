@@ -20,7 +20,6 @@ const MessageList = ({
                   key={message.uid}
                   message={message}
                   authUser={authUser}
-                  users={users}
                   toggleCreateComment={toggleCreateComment}
                   setActiveMessage={setActiveMessage}
               />

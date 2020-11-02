@@ -139,7 +139,7 @@ class Firebase {
     return commentsRef.orderByKey('parentId').equalTo(messageId);
   }
 
-  comments = (path) => this.db.ref(path);
+  comments = () => this.db.ref(`comments`);
 
   // *** Storage API ***
   getRef = () => this.storage.ref();

@@ -20,16 +20,8 @@ class UploadAvatarBase extends Component {
   }
 
   setUserAvatar(url, user) {
-    user.updateProfile({
-      photoUrl: url
-    }).then(function() {
-      console.log("Success!");
-    }).catch(error => {
-      console.log(error);
-    });
-
     this.props.firebase.user(user.uid).set({
-      username: user.displayName,
+      username: user.username,
       email: user.email,
       profile_picture: url,
     });
@@ -42,10 +34,9 @@ class UploadAvatarBase extends Component {
     });
   }
 
-  onFileUpload = () => {
+  onFileUpload = (authUser) => {
     const that = this;
-    const currentUser = that.props.firebase.getCurrentUser;
-    const user = currentUser();
+    const user = authUser;
     const file = this.state.file;
     const filePath = "avatar/" + user.uid + "_avatar.jpg";
     const fileRef = that.props.firebase.getRef().child(filePath);
@@ -75,7 +66,7 @@ class UploadAvatarBase extends Component {
           <h1>Upload Avatar</h1>
           <input type="file" onChange={this.onFileSelect} />
           <div className={styles.uploadButtonContainer}>
-            <ButtonFlat onClick={this.onFileUpload}>Upload</ButtonFlat>
+            <ButtonFlat onClick={() => { this.onFileUpload(authUser) }}>Upload</ButtonFlat>
           </div>
         </div>
       )}

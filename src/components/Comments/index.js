@@ -56,7 +56,6 @@ class CommentsBase extends Component {
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.location.state.message.uid
         !== this.props.location.state.message.uid) {
-      console.log("The component is getting new comments...");
       this.props.firebase.comments().off();
       this.onListenForComments(this.props.location.state.message);
     }

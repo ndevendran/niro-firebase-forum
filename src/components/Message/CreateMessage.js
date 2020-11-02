@@ -16,6 +16,7 @@ class CreateMessage extends Component {
   }
 
   onCreateMessage = (event) => {
+      console.log(this.props.authUser);
       this.props.firebase.writeMessage({
           text: this.state.text,
           userId: this.props.authUser.uid,
