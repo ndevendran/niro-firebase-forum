@@ -39,6 +39,7 @@ const MessagePresentation = ({ message,
                 bubble
               </span>
             )}
+            {message.commentCount}
         </div>
         <div>
 

@@ -4,6 +4,7 @@ import styles from './index.css';
 import { ButtonFlat } from '../../components/Button';
 import { withFirebase } from '../Firebase';
 import { withAuthentication } from '../Session';
+import { Redirect } from 'react-router-dom';
 
 class CreateMessage extends Component {
 
@@ -12,29 +13,58 @@ class CreateMessage extends Component {
     this.state = {
       text: '',
       showCreateMessage: false,
+      maxCharacters: 160,
+      charactersLeft: 160,
+      redirect: false,
+      newMessage: null,
     };
   }
 
   onCreateMessage = (event) => {
-      console.log(this.props.authUser);
-      this.props.firebase.writeMessage({
+      const key = this.props.firebase.writeMessage({
           text: this.state.text,
           userId: this.props.authUser.uid,
           profile_picture: this.props.authUser.profile_picture,
           username: this.props.authUser.username,
       });
 
-      this.setState({ text: '' });
+      const that = this;
+      this.props.firebase.message(key).once('value',
+        function(snapshot) {
+          const messageObject = snapshot.val();
+          messageObject.uid = key;
+          that.setState({ text: '', redirect: true, newMessage: messageObject });
+        }
+      );
 
       event.preventDefault();
   };
 
   onChangeText = event => {
-      this.setState({ text: event.target.value });
+    if(event.target.value.length > this.state.maxCharacters) {
+      return;
+    } else {
+      this.setState({
+        text: event.target.value,
+        charactersLeft: this.state.maxCharacters-event.target.value.length,
+      });
+    }
   }
 
 
   render() {
+    const { charactersLeft,redirect, newMessage } = this.state;
+
+    if(redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/comments/${newMessage.uid}`,
+            state: { message: newMessage }
+          }}
+        />
+      );
+    }
     return (
         <div className={styles.container} ref='createMessage'>
           <div className={styles.avatarContainer}>
@@ -50,7 +80,7 @@ class CreateMessage extends Component {
                     onChange={this.onChangeText}
                 />
               <div className={styles.createFooter}>
-                <div>Format Placeholder</div>
+                <div> {charactersLeft} charactersLeft </div>
                 <div className={styles.sendButton}>
                   <ButtonFlat type="submit">Send</ButtonFlat>
                 </div>

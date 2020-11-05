@@ -69,6 +69,7 @@ h1 {
   margin: auto;
   background-color: white;
   max-width: 600px;
+  color: black !important;
 }
 
 .overlay {

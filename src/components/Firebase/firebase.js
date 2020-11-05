@@ -103,14 +103,14 @@ class Firebase {
   message = uid => this.db.ref(`messages/${uid}`);
 
   writeMessage = (message) => {
-    this.db.ref(`messages`).push(
+    return this.db.ref(`messages`).push(
       {
         text: message.text,
         userId: message.userId,
         username: message.username,
         profile_picture: message.profile_picture,
         createdAt: this.serverValue.TIMESTAMP,
-      });
+      }).key;
   }
 
   getMessages = (limit) => {
@@ -124,13 +124,36 @@ class Firebase {
 
   // *** Comment API ***
   writeComment = (comment, messageId) => {
-    this.db.ref(`comments`).push({
-      text: comment.text,
-      createdAt: this.serverValue.TIMESTAMP,
-      userId: comment.userId,
-      username: comment.username,
-      parentId: messageId,
-      profile_picture: comment.profile_picture,
+    const that = this;
+    this.db.ref(`messages/${messageId}`)
+      .once('value', function(snapshot) {
+      const messageObject = snapshot.val();
+
+      if(messageObject) {
+        let updates = {};
+        const newCommentKey = that.db.ref().child('comments').push().key;
+        if(!messageObject.commentCount) {
+          messageObject.commentCount = 0;
+        }
+
+        updates[`messages/${messageId}`] = {
+          ...messageObject,
+          commentCount: messageObject.commentCount + 1,
+        };
+
+        updates[`comments/${newCommentKey}`] = {
+          text: comment.text,
+          createdAt: that.serverValue.TIMESTAMP,
+          userId: comment.userId,
+          username: comment.username,
+          parentId: messageId,
+          profile_picture: comment.profile_picture,
+        };
+
+        that.db.ref().update(updates);
+      } else {
+
+      }
     });
   }
 
