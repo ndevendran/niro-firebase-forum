@@ -118,7 +118,7 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { authUser, message, depth, commentCount } = this.props;
+        const { authUser, message, depth, commentCount, users } = this.props;
         const { editMode, editText } = this.state;
 
         return (

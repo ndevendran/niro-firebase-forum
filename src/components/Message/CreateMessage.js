@@ -4,7 +4,7 @@ import styles from './index.css';
 import { ButtonFlat } from '../../components/Button';
 import { withFirebase } from '../Firebase';
 import { withAuthentication } from '../Session';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class CreateMessage extends Component {
 
@@ -15,7 +15,6 @@ class CreateMessage extends Component {
       showCreateMessage: false,
       maxCharacters: 160,
       charactersLeft: 160,
-      redirect: false,
       newMessage: null,
     };
   }
@@ -28,12 +27,17 @@ class CreateMessage extends Component {
           username: this.props.authUser.username,
       });
 
+
+
       const that = this;
       this.props.firebase.message(key).once('value',
         function(snapshot) {
           const messageObject = snapshot.val();
           messageObject.uid = key;
-          that.setState({ text: '', redirect: true, newMessage: messageObject });
+          that.props.history.push({
+            pathname: `comments/${key}`,
+            state: { message: messageObject }
+          });
         }
       );
 
@@ -51,20 +55,9 @@ class CreateMessage extends Component {
     }
   }
 
-
   render() {
-    const { charactersLeft,redirect, newMessage } = this.state;
+    const { charactersLeft, newMessage } = this.state;
 
-    if(redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/comments/${newMessage.uid}`,
-            state: { message: newMessage }
-          }}
-        />
-      );
-    }
     return (
         <div className={styles.container} ref='createMessage'>
           <div className={styles.avatarContainer}>
@@ -92,4 +85,4 @@ class CreateMessage extends Component {
   }
 }
 
-export default withFirebase(CreateMessage);
+export default withRouter(withFirebase(CreateMessage));

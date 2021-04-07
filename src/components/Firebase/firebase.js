@@ -131,7 +131,7 @@ class Firebase {
 
       if(messageObject) {
         let updates = {};
-        const newCommentKey = that.db.ref().child('comments').push().key;
+        const newCommentKey = that.db.ref().child('messages').push().key;
         if(!messageObject.commentCount) {
           messageObject.commentCount = 0;
         }
@@ -141,7 +141,7 @@ class Firebase {
           commentCount: messageObject.commentCount + 1,
         };
 
-        updates[`comments/${newCommentKey}`] = {
+        updates[`messages/${newCommentKey}`] = {
           text: comment.text,
           createdAt: that.serverValue.TIMESTAMP,
           userId: comment.userId,
@@ -152,17 +152,16 @@ class Firebase {
 
         that.db.ref().update(updates);
       } else {
-
       }
     });
   }
 
   getComments = messageId => {
-    let commentsRef = this.db.ref(`comments`);
-    return commentsRef.orderByKey('parentId').equalTo(messageId);
+    let commentsRef = this.db.ref(`messages`);
+    return commentsRef.orderByChild('parentId').equalTo(messageId);
   }
 
-  comments = () => this.db.ref(`comments`);
+  comments = () => this.db.ref(`messages`);
 
   // *** Storage API ***
   getRef = () => this.storage.ref();

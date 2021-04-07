@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MessageList, MessageItem } from '../Message';
+import CommentList from './CommentList.js';
 import CreateComment from '../Comments/CreateComment.js';
 import { withFirebase } from '../Firebase';
 import { withAuthentication, AuthUserContext } from '../Session';
@@ -19,7 +20,7 @@ class CommentsBase extends Component {
   }
 
   onListenForComments(message) {
-    this.props.firebase.comments(`comments`)
+    this.props.firebase.comments()
       .orderByChild('parentId')
       .equalTo(message.uid)
       .on('value', (snapshot) => {
@@ -104,7 +105,7 @@ class CommentsBase extends Component {
             />
           )}
           {(comments && message) && (
-            <MessageList
+            <CommentList
               messages={comments}
               authUser={authUser}
               users={users}

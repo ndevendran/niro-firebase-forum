@@ -50,6 +50,12 @@
   flex-grow: 3;
 }
 
+.messageBody a {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
 .lightbox {
   z-index: 3;
   position: relative;

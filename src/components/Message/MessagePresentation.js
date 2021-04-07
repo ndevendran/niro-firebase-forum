@@ -1,21 +1,27 @@
 import React from 'react';
 import Button, { SVGEdit, SVGDelete, SVGLike } from '../Button';
 import styles from './index.css';
+import * as ROUTES from '../../constants/routes';
+import { Switch, Route, Link } from 'react-router-dom';
 
 
 const MessagePresentation = ({ message,
   onRemoveMessage, onToggleEditMode,
   onLikeMessage, toggleCreateComment,
   authUser, setActiveMessage,
-  commentCount }) => {
+  commentCount, users }) => {
   return (
     <>
       <div className={styles.messageHeader}>
           <strong>{message.username || 'Anonymous'}</strong>
       </div>
       <div className={styles.messageBody}>
+      <Link to={{pathname: `${ROUTES.COMMENTS}/${message.uid}`,
+        state: { message, users },}}
+      >
         {message.text}
         {message.editedAt && <span> (Edited)</span>}
+      </Link>
       </div>
       <div className={styles.messageFunctions}>
         <div>
