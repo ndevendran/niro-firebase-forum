@@ -11,3 +11,4 @@ export const SIGN_IN_METHODS = '/account/methods';
 export const MESSAGE = '/compose/message';
 export const COMMENTS = '/comments';
 export const MESSAGE_DETAILS = '/comments/:id';
+export const FRONTPAGE = '/frontpage';

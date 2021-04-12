@@ -18,7 +18,7 @@ class MessageBase extends Component {
             messages: [],
             users: {},
             text: '',
-            limit: 5,
+            limit: 15,
             displayCreateComment: false,
             activeMessage: null,
         };

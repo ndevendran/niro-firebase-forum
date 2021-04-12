@@ -12,15 +12,46 @@ const INITIAL_STATE = {
     error: null,
 };
 
+const signInFormStyle = {
+  fontSize: '15px',
+  height: '30%',
+};
+
+const signInPageStyle = {
+  maxWidth: '400px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  marginTop: '20px',
+  display: 'flex',
+  flexBasis: 'auto',
+  flexDirection: 'column',
+  height: '100%',
+};
+
+const inputStyle = {
+  width: '100%',
+  height: '50%',
+  maxHeight: '40px',
+};
+
+const divStyle = {
+  height: '50%',
+  boxSizing: 'border-box',
+  marginBottom: 'auto',
+  marginTop: 'auto',
+};
+
 const SignInPage = () => (
-    <div>
+    <div style={signInPageStyle}>
         <h1>Sign In</h1>
         <SignInForm />
+        <div style={divStyle}>
         <SignInGoogle />
         <SignInFacebook />
         <SignInTwitter />
         <PasswordForgetLink />
         <SignUpLink />
+        </div>
     </div>
 );
 
@@ -51,7 +82,7 @@ class SignInFormBase extends Component
                 if(error.code === ERROR_CODE_ACCOUNT_EXISTS) {
                     error.message = ERROR_MSG_ACCOUNT_EXISTS;
                 }
-                
+
                 this.setState({ error });
             });
 
@@ -68,24 +99,32 @@ class SignInFormBase extends Component
         const isInvalid = password === '' || email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <form style={signInFormStyle} onSubmit={this.onSubmit}>
+              <div style={divStyle}>
                 <input
+                    style={inputStyle}
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Email Address"
                 />
+              </div>
+              <div style={divStyle}>
                 <input
+                    style={inputStyle}
                     name="password"
                     value={password}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
                 />
+              </div>
+              <div style={divStyle}>
                 <button disabled={isInvalid} type="submit">
                     Sign In
                 </button>
+              </div>
 
                 {error && <p>{error.message}</p>}
             </form>
@@ -163,7 +202,7 @@ class SignInFacebookBase extends Component {
                     if(error.code === ERROR_CODE_ACCOUNT_EXISTS) {
                         error.message = ERROR_MSG_ACCOUNT_EXISTS;
                     }
-                    
+
                     this.setState({ error });
                 });
 
@@ -207,7 +246,7 @@ class SignInTwitterBase extends Component {
                 if(error.code === ERROR_CODE_ACCOUNT_EXISTS) {
                     error.message = ERROR_MSG_ACCOUNT_EXISTS;
                 }
-                
+
                 this.setState({ error });
             });
 

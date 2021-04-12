@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Redirect, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './reset.css';
 import styles from './index.css';
 
