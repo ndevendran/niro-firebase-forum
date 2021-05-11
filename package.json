@@ -15,7 +15,7 @@
     "file-loader": "^6.0.0",
     "firebase": "^7.15.5",
     "html-webpack-plugin": "^4.3.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
